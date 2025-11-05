@@ -12,7 +12,7 @@ export default function LatestProducts() {
 
   // fetch JSON data
   useEffect(() => {
-    fetch("/Public/Products.json") // your JSON file path or API
+    fetch("/Products.json") // your JSON file path or API
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((err) => console.error(err));
