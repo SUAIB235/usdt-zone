@@ -6,6 +6,7 @@ import { getAuth } from "firebase/auth";
 
 // (Optional) Import Analytics
 import { getAnalytics } from "firebase/analytics";
+import { getFirestore } from "firebase/firestore";
 
 // Your Firebase configuration
 const firebaseConfig = {
@@ -21,8 +22,9 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Initialize Auth (IMPORTANT)
+// Initialize Auth (IMPORTANT)'
 export const auth = getAuth(app);
+export const db = getFirestore(app);
 
 // Initialize Analytics (optional – will not break)
 export const analytics = getAnalytics(app);
