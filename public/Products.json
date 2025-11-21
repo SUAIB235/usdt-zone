@@ -182,13 +182,5 @@
     "withoutdis": "510",
     "price": "400",
     "category": "Pant"
-  },
-  {
-    "id": 24,
-    "title": "Womens Party Wear Shoes",
-    "product_picture": "https://i.ibb.co.com/99Hyn92R/party-wear-1.jpg",
-    "withoutdis": "1750",
-    "price": "1580",
-    "category": "Shoes"
-  }
+   }
 ]
