@@ -125,8 +125,6 @@ useEffect(() => {
       Logout
     </button>
   </div>
-)}
-
       )}
     </div>
   </div>
