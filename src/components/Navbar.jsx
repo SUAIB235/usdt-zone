@@ -102,21 +102,30 @@ useEffect(() => {
       </div>
 
       {user && showPopup && (
-        <div className="absolute right-0 top-12 bg-white shadow-lg rounded-xl p-3 w-52 text-center z-50">
-          <p className="text-sm break-all">{user.email}</p>
-          <button
-            onClick={logout}
-            className="mt-3 w-full bg-[#ff8f9c] text-white py-1.5 rounded-xl hover:bg-black transition"
-          >
-            Logout
-          </button>
-        </div>
-   
-   {isAdmin && (
-  <button onClick={() => navigate("/addproducts")}>
-    Admin Panel
-  </button>
+  <div className="absolute right-0 top-12 bg-white shadow-lg rounded-xl p-3 w-52 text-center z-50">
+
+    {/* Show user email */}
+    <p className="text-sm break-all">{user.email}</p>
+
+    {/* Admin Button (only for you) */}
+    {isAdmin && (
+      <button
+        onClick={() => navigate("/admin")}
+        className="mt-3 w-full bg-blue-500 text-white py-1.5 rounded-xl hover:bg-blue-600 transition"
+      >
+        Admin Panel
+      </button>
     )}
+
+    {/* Logout Button */}
+    <button
+      onClick={logout}
+      className="mt-3 w-full bg-[#ff8f9c] text-white py-1.5 rounded-xl hover:bg-black transition"
+    >
+      Logout
+    </button>
+  </div>
+)}
 
       )}
     </div>
