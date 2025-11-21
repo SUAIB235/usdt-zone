@@ -5,6 +5,8 @@ import ProductCard from "./ProductCard";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase"; 
 
+
+
 const Allproducts = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -53,9 +55,10 @@ const Allproducts = () => {
         </div>
       ) : filterproducts.length > 0 ? (
         <>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {visibleproducts.map((products) => (
-              <ProductCard key={products.id} products={products}></ProductCard>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+          >
+            {visibleproducts.map((product) => (
+              <ProductCard key={product.id} product={product} ></ProductCard>
             ))}
           </div>
           {filterproducts.length > 8 && (

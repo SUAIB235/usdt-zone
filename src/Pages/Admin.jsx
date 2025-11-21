@@ -13,8 +13,8 @@ const AddProduct = () => {
   const [product, setProduct] = useState({
     title: "",
     product_picture: "",
-    withoutdis: "",
-    price: "",
+    oldprice: "",
+    newprice: "",
     category: "",
   });
 
@@ -71,7 +71,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="w-11/12 mx-auto mt-10">
+    <div className="w-11/12 mx-auto font-mon mt-10">
       <h2 className="text-2xl font-bold mb-5">Add Product</h2>
 
       {/* ADD PRODUCT FORM */}
@@ -81,7 +81,7 @@ const AddProduct = () => {
           value={product.title}
           onChange={handleChange}
           placeholder="Title"
-          className="w-full border p-2"
+          className="w-full mb-4 p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-[#202020]"
           required
         />
 
@@ -90,25 +90,25 @@ const AddProduct = () => {
           value={product.product_picture}
           onChange={handleChange}
           placeholder="Image URL"
-          className="w-full border p-2"
+          className="w-full mb-4 p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-[#202020]"
           required
         />
 
         <input
-          name="withoutdis"
-          value={product.withoutdis}
+          name="oldprice"
+          value={product.oldprice}
           onChange={handleChange}
           placeholder="Old Price"
-          className="w-full border p-2"
+          className="w-full mb-4 p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-[#202020]"
           required
         />
 
         <input
-          name="price"
-          value={product.price}
+          name="newprice"
+          value={product.newprice}
           onChange={handleChange}
           placeholder="New Price"
-          className="w-full border p-2"
+          className="w-full mb-4 p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-[#202020]"
           required
         />
 
@@ -117,7 +117,7 @@ const AddProduct = () => {
           value={product.category}
           onChange={handleChange}
           placeholder="Category"
-          className="w-full border p-2"
+          className="w-full mb-4 p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-[#202020]"
           required
         />
 
@@ -132,24 +132,24 @@ const AddProduct = () => {
       {/* PRODUCT LIST */}
       <h2 className="text-xl font-bold mt-10 mb-4">All Products</h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-3 md:grid-cols-6 gap-6 ">
         {productsList.map((item) => (
-          <div className="border p-4 rounded shadow" key={item.id}>
+          <div className="px-3 border border-gray-300 rounded-xl" key={item.id}>
             <img
               src={item.product_picture}
               alt={item.title}
-              className="w-full h-40 object-cover rounded"
+              className="w-auto h-auto object-cover rounded"
             />
 
             <h3 className="font-bold mt-2">{item.title}</h3>
-            <p>New Price: {item.price}</p>
-            <p>Old Price: {item.withoutdis}</p>
+            <p>New Price: {item.newprice}</p>
+            <p>Old Price: {item.oldprice}</p>
             <p>Category: {item.category}</p>
 
             {/* DELETE BUTTON ONLY */}
             <button
               onClick={() => deleteProduct(item.id)}
-              className="bg-red-500 text-white px-3 py-1 rounded mt-3 w-full"
+              className="bg-red-500 text-white px-3 py-1 rounded mt-3 mb-3 w-25"
             >
               Delete
             </button>

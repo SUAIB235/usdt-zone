@@ -4,7 +4,9 @@ import { RouterProvider } from "react-router/dom";
 import Root from "./Layouts/Root"
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
-import AddProducts from "./Pages/AddProducts";
+import Admin from "./Pages/Admin";
+import Checkout from "./Pages/Checkout";
+
 
 const router = createBrowserRouter([
   {
@@ -21,7 +23,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <AddProducts></AddProducts>,
+    element: <Admin></Admin>,
+  },
+   {
+    path: "/checkout",
+    element: <Checkout></Checkout>,
   },
 ]);
 

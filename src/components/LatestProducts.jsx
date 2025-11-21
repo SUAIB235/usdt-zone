@@ -7,24 +7,38 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { FaStar } from "react-icons/fa";
 import { FaRegStarHalfStroke } from "react-icons/fa6";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase"; 
+import { useNavigate } from "react-router-dom";
+
 
 export default function LatestProducts() {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
-  // fetch JSON data
-  useEffect(() => {
-    fetch("/Products.json") // your JSON file path or API
-      .then((res) => res.json())
-      .then((data) => setProducts(data))
-      .catch((error) => {
-        console.log(error);
-         toast.error("Failed to load product data. Please try again.");
-      })
-  }, []);
+
+    useEffect(() => {
+  const fetchProducts = async () => {
+    try {
+      const snapshot = await getDocs(collection(db, "Products"));
+      const data = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+
+      setProducts(data);
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to load product data. Please try again.");
+    } 
+  };
+
+  fetchProducts();
+}, []);
 
   return (
     <div className=" max-full mx-auto w-11/12 mb-3">
-      <h2 className="text-2xl font-pop font-bold mb-5 text-center text-[#ff8f9c]">
+      <h2 className="text-2xl font-pop font-bold mt-5 mb-5 text-center text-[#ff8f9c]">
         Latest Products
       </h2>
 
@@ -42,7 +56,9 @@ export default function LatestProducts() {
       >
         {products.map((product) => (
           <SwiperSlide key={product.id}>
-            <div className="h-50 md:h-65 font-mon transition-transform duration-300 hover:scale-105 border border-[#E5E7EB] rounded-2xl bg-[#ffffff]">
+            <div className="h-50 md:h-65 font-mon transition-transform duration-300 hover:scale-105 border border-[#E5E7EB] rounded-2xl bg-[#ffffff]"
+            onClick={() => navigate("/checkout", { state: { product } })}
+            >
               <img
                 src={product.product_picture}
                 alt={product.title}
@@ -56,8 +72,8 @@ export default function LatestProducts() {
                     <FaRegStarHalfStroke />
                   </div>
                   <p className="flex gap-2 mb-3">
-                    <div className="line-through">{product.withoutdis}</div>{" "}
-                    <strong>{product.price}</strong> BDT
+                    <div className="line-through">{product.oldprice}</div>{" "}
+                    <strong>{product.newprice}</strong> BDT
                   </p>
                 </div>
               </div>
