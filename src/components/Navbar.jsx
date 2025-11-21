@@ -10,6 +10,7 @@ export default function Navbar() {
    const [user, setUser] = useState(null);
    const [showPopup, setShowPopup] = useState(false);
    const navigate = useNavigate();
+   const adminEmail = "suaibhasan00@gmail.com";
 
     const link = (
         <>
