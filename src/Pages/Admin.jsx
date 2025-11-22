@@ -8,8 +8,11 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
+  const navigate = useNavigate();
+  // PRODUCT STATE
   const [product, setProduct] = useState({
     title: "",
     product_picture: "",
@@ -18,15 +21,42 @@ const AddProduct = () => {
     category: "",
   });
 
-  const [productsList, setProductsList] = useState([]);
+  // PAYMENT METHOD STATE
+  const [payment, setPayment] = useState({
+    payment_type: "",
+    payment_no: "",
+  });
 
-  // INPUT HANDLER
-  const handleChange = (e) => {
+  const [productsList, setProductsList] = useState([]);
+  const [paymentList, setPaymentList] = useState([]);
+
+  // INPUT HANDLERS
+  const handleProductChange = (e) => {
     setProduct({ ...product, [e.target.name]: e.target.value });
   };
 
+  const handlePaymentChange = (e) => {
+    setPayment({ ...payment, [e.target.name]: e.target.value });
+  };
+
+  // ADD PAYMENT METHOD
+  const handlePaymentSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await addDoc(collection(db, "PaymentMethods"), payment);
+      toast.success("Payment Method Added!");
+
+      setPayment({ payment_type: "", payment_no: "" });
+      fetchPaymentMethods();
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to add payment method");
+    }
+  };
+
   // ADD PRODUCT
-  const handleSubmit = async (e) => {
+  const handleProductSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -36,19 +66,19 @@ const AddProduct = () => {
       setProduct({
         title: "",
         product_picture: "",
-        withoutdis: "",
-        price: "",
+        oldprice: "",
+        newprice: "",
         category: "",
       });
 
-      fetchProducts(); // refresh list
+      fetchProducts();
     } catch (error) {
       console.log(error);
       toast.error("Failed to add product");
     }
   };
 
-  // FETCH ALL PRODUCTS
+  // FETCH PRODUCTS
   const fetchProducts = async () => {
     const querySnapshot = await getDocs(collection(db, "Products"));
     const items = querySnapshot.docs.map((doc) => ({
@@ -58,9 +88,19 @@ const AddProduct = () => {
     setProductsList(items);
   };
 
-  // LOAD PRODUCTS ON PAGE OPEN
+  // FETCH PAYMENT METHODS
+  const fetchPaymentMethods = async () => {
+    const querySnapshot = await getDocs(collection(db, "PaymentMethods"));
+    const items = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    setPaymentList(items);
+  };
+
   useEffect(() => {
     fetchProducts();
+    fetchPaymentMethods();
   }, []);
 
   // DELETE PRODUCT
@@ -70,54 +110,133 @@ const AddProduct = () => {
     setProductsList(productsList.filter((item) => item.id !== id));
   };
 
+  // DELETE PAYMENT METHOD
+  const deletePayment = async (id) => {
+    await deleteDoc(doc(db, "PaymentMethods", id));
+    toast.success("Payment method deleted!");
+    setPaymentList(paymentList.filter((item) => item.id !== id));
+  };
+
   return (
     <div className="w-11/12 mx-auto font-mon mt-10">
+      {/* Order Management */}
+      <h2 className="text-2xl font-bold mb-5">Order Management</h2>
+      <button
+        onClick={() => navigate("/ordermanagement")}
+        className="px-4 py-2 bg-red-500 text-white rounded mb-5"
+      >
+        Order Management
+      </button>
+
+      {/* Message Management */}
+      <h2 className="text-2xl font-bold mb-5">Message Management</h2>
+      <button
+        onClick={() => navigate("/messagemanagement")}
+        className="px-4 py-2 bg-red-500 text-white rounded mb-5"
+      >
+        Message Management
+      </button>
+
+      {/* PAYMENT METHOD FORM */}
+      <h2 className="text-2xl font-bold mb-5">Add Payment Method</h2>
+
+      <form onSubmit={handlePaymentSubmit} className="space-y-4">
+        <input
+          name="payment_type"
+          value={payment.payment_type}
+          onChange={handlePaymentChange}
+          placeholder="Payment Type (Bkash, Nagad, Rocket)"
+          className="w-full p-3 border border-gray-300 rounded-xl"
+          required
+        />
+
+        <input
+          name="payment_no"
+          value={payment.payment_no}
+          onChange={handlePaymentChange}
+          placeholder="Payment Number"
+          className="w-full p-3 border border-gray-300 rounded-xl"
+          required
+        />
+
+        <button
+          type="submit"
+          className="px-4 py-2 bg-red-500 text-white rounded mb-5"
+        >
+          Add Payment Method
+        </button>
+      </form>
+
+      {/* PAYMENT LIST */}
+      <h2 className="text-xl font-bold mt-5 mb-3">Payment Methods</h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+        {paymentList.map((item) => (
+          <div
+            className="border p-4 rounded-xl flex justify-between items-center border-gray-300"
+            key={item.id}
+          >
+            <div>
+              <p className="font-bold">{item.payment_type}</p>
+              <p>{item.payment_no}</p>
+            </div>
+
+            <button
+              onClick={() => deletePayment(item.id)}
+              className="bg-red-500 text-white px-3 py-1 rounded"
+            >
+              Delete
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {/* PRODUCT FORM */}
       <h2 className="text-2xl font-bold mb-5">Add Product</h2>
 
-      {/* ADD PRODUCT FORM */}
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleProductSubmit} className="space-y-4">
         <input
           name="title"
           value={product.title}
-          onChange={handleChange}
+          onChange={handleProductChange}
           placeholder="Title"
-          className="w-full mb-4 p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-[#202020]"
+          className="w-full p-3 border border-gray-300 rounded-xl"
           required
         />
 
         <input
           name="product_picture"
           value={product.product_picture}
-          onChange={handleChange}
+          onChange={handleProductChange}
           placeholder="Image URL"
-          className="w-full mb-4 p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-[#202020]"
+          className="w-full p-3 border border-gray-300 rounded-xl"
           required
         />
 
         <input
           name="oldprice"
           value={product.oldprice}
-          onChange={handleChange}
+          onChange={handleProductChange}
           placeholder="Old Price"
-          className="w-full mb-4 p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-[#202020]"
+          className="w-full p-3 border border-gray-300 rounded-xl"
           required
         />
 
         <input
           name="newprice"
           value={product.newprice}
-          onChange={handleChange}
+          onChange={handleProductChange}
           placeholder="New Price"
-          className="w-full mb-4 p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-[#202020]"
+          className="w-full p-3 border border-gray-300 rounded-xl"
           required
         />
 
         <input
           name="category"
           value={product.category}
-          onChange={handleChange}
+          onChange={handleProductChange}
           placeholder="Category"
-          className="w-full mb-4 p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-[#202020]"
+          className="w-full p-3 border border-gray-300 rounded-xl"
           required
         />
 
@@ -132,7 +251,7 @@ const AddProduct = () => {
       {/* PRODUCT LIST */}
       <h2 className="text-xl font-bold mt-10 mb-4">All Products</h2>
 
-      <div className="grid grid-cols-3 md:grid-cols-6 gap-6 ">
+      <div className="grid grid-cols-2 md:grid-cols-6 gap-6">
         {productsList.map((item) => (
           <div className="px-3 border border-gray-300 rounded-xl" key={item.id}>
             <img
@@ -146,10 +265,9 @@ const AddProduct = () => {
             <p>Old Price: {item.oldprice}</p>
             <p>Category: {item.category}</p>
 
-            {/* DELETE BUTTON ONLY */}
             <button
               onClick={() => deleteProduct(item.id)}
-              className="bg-red-500 text-white px-3 py-1 rounded mt-3 mb-3 w-25"
+              className="bg-red-500 text-white px-3 py-1 rounded mt-3 mb-3"
             >
               Delete
             </button>

@@ -8,33 +8,31 @@ import "swiper/css/pagination";
 import { FaStar } from "react-icons/fa";
 import { FaRegStarHalfStroke } from "react-icons/fa6";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase"; 
+import { db } from "../firebase";
 import { useNavigate } from "react-router-dom";
-
 
 export default function LatestProducts() {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const snapshot = await getDocs(collection(db, "Products"));
+        const data = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
 
-    useEffect(() => {
-  const fetchProducts = async () => {
-    try {
-      const snapshot = await getDocs(collection(db, "Products"));
-      const data = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
+        setProducts(data);
+      } catch (error) {
+        console.log(error);
+        toast.error("Failed to load product data. Please try again.");
+      }
+    };
 
-      setProducts(data);
-    } catch (error) {
-      console.log(error);
-      toast.error("Failed to load product data. Please try again.");
-    } 
-  };
-
-  fetchProducts();
-}, []);
+    fetchProducts();
+  }, []);
 
   return (
     <div className=" max-full mx-auto w-11/12 mb-3">
@@ -56,8 +54,34 @@ export default function LatestProducts() {
       >
         {products.map((product) => (
           <SwiperSlide key={product.id}>
-            <div className="h-50 md:h-65 font-mon transition-transform duration-300 hover:scale-105 border border-[#E5E7EB] rounded-2xl bg-[#ffffff]"
-            onClick={() => navigate("/checkout", { state: { product } })}
+            <div
+              className="h-50 md:h-65 font-mon transition-transform duration-300 hover:scale-105 border border-[#E5E7EB] rounded-2xl bg-[#ffffff]"
+              onClick={async () => {
+                try {
+                  const snap = await getDocs(collection(db, "PaymentMethods"));
+                  const paymentMethods = snap.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                  }));
+
+                  if (paymentMethods.length === 0) {
+                    toast.error("No payment method found!");
+                    return;
+                  }
+
+                  const payment = paymentMethods[0]; // use first payment method
+
+                  navigate("/checkout", {
+                    state: {
+                      product,
+                      payment,
+                    },
+                  });
+                } catch (error) {
+                  console.log(error);
+                  toast.error("Failed to load payment method!");
+                }
+              }}
             >
               <img
                 src={product.product_picture}
@@ -71,10 +95,10 @@ export default function LatestProducts() {
                     <FaStar /> <FaStar /> <FaStar /> <FaStar />{" "}
                     <FaRegStarHalfStroke />
                   </div>
-                  <p className="flex gap-2 mb-3">
-                    <div className="line-through">{product.oldprice}</div>{" "}
+                  <div className="flex gap-2 mb-3">
+                    <p className="line-through">{product.oldprice}</p>{" "}
                     <strong>{product.newprice}</strong> BDT
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
