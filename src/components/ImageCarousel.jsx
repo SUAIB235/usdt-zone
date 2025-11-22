@@ -7,11 +7,11 @@ import "swiper/css/pagination";
 import "../index.css"; // keep styles here
 
 // Import images
-import slider1 from "../assets/Slider1.png";
-import slider2 from "../assets/Slider2.png";
-import slider3 from "../assets/Slider3.png";
-import slider4 from "../assets/Slider4.png";
-import slider5 from "../assets/Slider5.png";
+import slider1 from "../assets/Slider_1.png";
+import slider2 from "../assets/Slider_2.png";
+import slider3 from "../assets/Slider_3.png";
+import slider4 from "../assets/Slider_4.png";
+import slider5 from "../assets/Slider_5.png";
 
 export default function Carousel() {
   // Keep all images in an array
