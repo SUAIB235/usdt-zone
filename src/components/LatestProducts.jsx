@@ -45,7 +45,6 @@ export default function LatestProducts() {
         slidesPerView={1}
         spaceBetween={20}
         autoplay={{ delay: 3000 }}
-        pagination={{ clickable: true }}
         breakpoints={{
           640: { slidesPerView: 3 },
           1024: { slidesPerView: 6 },

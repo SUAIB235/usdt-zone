@@ -11,6 +11,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 import Swal from "sweetalert2";
+import { IoCashOutline } from "react-icons/io5";
 
 export default function Checkout() {
   const navigate = useNavigate();
@@ -134,11 +135,24 @@ export default function Checkout() {
           className="w-40 mx-auto rounded-lg"
         />
 
-        <h3 className="text-xl text-center mt-3">{product.title}</h3>
+        <h3 className="text-xl text-center mt-3 font-semibold">
+          {product.title}
+        </h3>
 
-        <p className="text-center text-lg font-semibold text-black">
+        <p className="text-center text-lg font-bold text-black">
           {product.newprice} BDT
         </p>
+
+        {/* DESCRIPTION */}
+        <div className="mt-4">
+          <p className="text-left text-lg font-semibold text-black">
+            Description
+          </p>
+
+          <p className="text-left text-sm text-gray-700 mt-1 leading-relaxed">
+            {product.product_description}
+          </p>
+        </div>
 
         <div className="w-25 flex items-center justify-center gap-4 mt-4 border border-gray-300">
           <button onClick={decreaseQty} className="px-2 text-xl">
@@ -200,16 +214,24 @@ export default function Checkout() {
             paymentMethods.map((pm) => (
               <label
                 key={pm.id}
-                className="flex items-center gap-3 border p-2 mb-2 rounded-lg cursor-pointer"
+                className={`flex items-center gap-3 p-3 mb-2 border rounded-xl cursor-pointer transition 
+               ${
+                 selectedPayment?.id === pm.id
+                   ? "border-[#ff8f9c] bg-pink-50"
+                   : "bg-white"
+               }`}
               >
                 <input
                   type="radio"
                   checked={selectedPayment?.id === pm.id}
                   onChange={() => setSelectedPayment(pm)}
                 />
-                <div>
-                  <p className="font-semibold">{pm.payment_type}</p>
-                  <p className="text-sm">{pm.payment_no}</p>
+                <div className="flex items-center gap-3">
+                  <IoCashOutline className="text-xl mb-1" />
+                  <div>
+                    <p className="font-semibold">{pm.payment_type}</p>
+                    <p className="text-sm text-gray-600">{pm.payment_no}</p>
+                  </div>
                 </div>
               </label>
             ))

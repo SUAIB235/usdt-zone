@@ -15,6 +15,7 @@ export default function Navbar() {
     <>
       <li onClick={() => navigate("/")}>Home</li>
       <li onClick={() => navigate("/products")}>Product</li>
+      <li onClick={() => navigate("/orders")}>Orders</li>
       <li onClick={() => navigate("/about")}>About</li>
       <li onClick={() => navigate("/contact")}>Contact</li>
     </>

@@ -15,6 +15,7 @@ const AddProduct = () => {
   // PRODUCT STATE
   const [product, setProduct] = useState({
     title: "",
+    product_description: "",
     product_picture: "",
     oldprice: "",
     newprice: "",
@@ -91,6 +92,7 @@ const AddProduct = () => {
 
       setProduct({
         title: "",
+        product_description: "",
         product_picture: "",
         oldprice: "",
         newprice: "",
@@ -158,7 +160,7 @@ const AddProduct = () => {
   const deletePayment = async (id) => {
     await deleteDoc(doc(db, "PaymentMethods", id));
     toast.success("Payment method deleted!");
-    setPaymentList(paymentList.filter((item) => item.id !== id));
+    setSliderList(paymentList.filter((item) => item.id !== id));
   };
 
   return (
@@ -231,11 +233,11 @@ const AddProduct = () => {
               <p className="font-bold mb-2">{item.slider_img}</p>
 
               <button
-              onClick={() => deleteSlider(item.id)}
-              className="bg-red-500 text-white px-3 py-1 rounded"
-            >
-              Delete
-            </button>
+                onClick={() => deleteSlider(item.id)}
+                className="bg-red-500 text-white px-3 py-1 rounded"
+              >
+                Delete
+              </button>
             </div>
           </div>
         ))}
@@ -310,6 +312,15 @@ const AddProduct = () => {
           value={product.title}
           onChange={handleProductChange}
           placeholder="Title"
+          className="w-full p-3 border border-gray-300 rounded-xl"
+          required
+        />
+
+        <input
+          name="product_description"
+          value={product.product_description}
+          onChange={handleProductChange}
+          placeholder="Product Description"
           className="w-full p-3 border border-gray-300 rounded-xl"
           required
         />

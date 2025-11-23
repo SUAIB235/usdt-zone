@@ -50,7 +50,7 @@ export default function OrderHistory() {
       </h2>
 
       {orders.length === 0 ? (
-        <p className="text-center text-gray-500">No orders yet.</p>
+        <p className="text-4xl font-bold text-center text-[#ff8f9c] mt-10">No orders yet.</p>
       ) : (
         <div className="space-y-4">
           {orders.map((order) => (
