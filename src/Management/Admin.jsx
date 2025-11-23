@@ -160,7 +160,7 @@ const AddProduct = () => {
   const deletePayment = async (id) => {
     await deleteDoc(doc(db, "PaymentMethods", id));
     toast.success("Payment method deleted!");
-    setSliderList(paymentList.filter((item) => item.id !== id));
+    setPaymentList(paymentList.filter((item) => item.id !== id));
   };
 
   return (
