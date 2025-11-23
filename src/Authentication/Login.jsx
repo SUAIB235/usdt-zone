@@ -9,30 +9,23 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
- const handleLogin = async () => {
-  try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-
-    if (!user.emailVerified) {
-      toast.error("Please verify your email before logging in.");
-      return;
+  const handleLogin = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      toast.success("Login successfully!");
+      navigate("/");
+    } catch (err) {
+      if (err.code === "auth/user-not-found") {
+        toast.error("No account found with this email.");
+      } else if (err.code === "auth/wrong-password") {
+        toast.error("Incorrect password. Try again.");
+      } else if (err.code === "auth/invalid-email") {
+        toast.error("Invalid email format.");
+      } else {
+        toast.error("Login failed. Please try again.");
+      }
     }
-
-    toast.success("Login successfully!");
-    navigate("/");
-  } catch (err) {
-    if (err.code === "auth/user-not-found") {
-      toast.error("No account found with this email.");
-    } else if (err.code === "auth/wrong-password") {
-      toast.error("Incorrect password. Try again.");
-    } else if (err.code === "auth/invalid-email") {
-      toast.error("Invalid email format.");
-    } else {
-      toast.error("Login failed. Please try again.");
-    }
-  }
-};
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white font-pop">
