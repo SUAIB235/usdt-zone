@@ -23,7 +23,7 @@ export default function Carousel() {
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-[#00180d]">
       <Swiper
         modules={[Pagination, Autoplay]}
         pagination={{ clickable: true }}

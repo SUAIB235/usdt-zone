@@ -164,7 +164,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="w-11/12 mx-auto font-mon mt-10">
+    <div className="w-11/12 mx-auto font-mon mb-10 mt-10">
       <Toaster position="top-right" />
       {/* Order Management */}
       <h2 className="text-2xl font-bold mb-5">1. Order Management</h2>

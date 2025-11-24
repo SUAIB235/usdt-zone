@@ -10,7 +10,7 @@ const ProductCard = ({ product }) => {
   const navigate = useNavigate();
   return (
     <div
-      className="font-mon transition-transform duration-300 hover:scale-105 border border-[#E5E7EB] rounded-2xl bg-[#ffffff]"
+      className="font-mon mb-10 mt-5 transition-transform duration-300 hover:scale-105 border border-[#2dcd84] rounded-2xl bg-[#00180d]"
       onClick={async () => {
         try {
           const snap = await getDocs(collection(db, "PaymentMethods"));
@@ -42,11 +42,11 @@ const ProductCard = ({ product }) => {
       />
       <div className="flex p-2">
         <div>
-          <h3 className="text-[#21214c] font-mon">{product.title}</h3>
+          <h3 className="text-[#2dcd84] font-mon">{product.title}</h3>
           <div className="flex text-[#f6a355]">
             <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaRegStarHalfStroke />
           </div>
-          <div className="flex gap-2 mb-3">
+          <div className="flex gap-2 mb-3 text-[#2dcd84]">
             <p className="line-through">{product.oldprice}</p>{" "}
             <strong>{product.newprice}</strong> BDT
           </div>

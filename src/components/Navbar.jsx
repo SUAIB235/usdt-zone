@@ -3,6 +3,7 @@ import { IoPersonOutline } from "react-icons/io5";
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
+import { IoMdSearch } from "react-icons/io";
 
 export default function Navbar() {
   const [user, setUser] = useState(null);
@@ -13,11 +14,11 @@ export default function Navbar() {
 
   const link = (
     <>
-      <li onClick={() => navigate("/")}>Home</li>
-      <li onClick={() => navigate("/products")}>Product</li>
-      <li onClick={() => navigate("/orders")}>Orders</li>
-      <li onClick={() => navigate("/about")}>About</li>
-      <li onClick={() => navigate("/contact")}>Contact</li>
+      <li className="text-[#2dcd84]" onClick={() => navigate("/")}>Home</li>
+      <li className="text-[#2dcd84]" onClick={() => navigate("/products")}>Product</li>
+      <li className="text-[#2dcd84]" onClick={() => navigate("/orders")}>Orders</li>
+      <li className="text-[#2dcd84]" onClick={() => navigate("/about")}>About</li>
+      <li className="text-[#2dcd84]" onClick={() => navigate("/contact")}>Contact</li>
     </>
   );
 
@@ -83,7 +84,7 @@ export default function Navbar() {
             </ul>
           </div>
           <div className="flex items-center gap-10">
-            <a className="lg:text-4xl sm:text-2xl font-mon font-bold text-[#ff8f9c] hover:text-[#000000] transition">
+            <a className="lg:text-4xl sm:text-2xl font-mon font-bold text-[#2dcd84] hover:text-[#000000] transition">
               USDTZONE
             </a>
             <div className="navbar-center hidden lg:flex">
@@ -96,30 +97,15 @@ export default function Navbar() {
         <div className="navbar-end flex gap-2 md:gap-6 lg:gap-6">
           <form
             onSubmit={handleSearch}
-            className="flex items-center gap-2 bg-white/10 rounded-full px-3 py-2 border border-[#D1D5DC]"
+            className="flex items-center gap-2 rounded-full px-3 py-2 border border-[#2dcd84]"
           >
-            <svg
-              className="h-[1em] opacity-50"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
-              <g
-                strokeLinejoin="round"
-                strokeLinecap="round"
-                strokeWidth="2.5"
-                fill="none"
-                stroke="currentColor"
-              >
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.3-4.3"></path>
-              </g>
-            </svg>
+           <IoMdSearch className="text-[#2dcd84] text-2xl" />
             <input
               type="search"
               placeholder="Search"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="bg-transparent outline-none text-sm text-[#202020] placeholder-[#202020] w-15 md:w-40 sm:flex"
+              className="bg-transparent outline-none text-sm text-[#2dcd84] placeholder-[#2dcd84] w-15 md:w-40 sm:flex"
             />
           </form>
 
@@ -128,7 +114,7 @@ export default function Navbar() {
               className="text-2xl md:text-3xl lg:text-3xl cursor-pointer"
               onClick={handleIconClick}
             >
-              <IoPersonOutline />
+              <IoPersonOutline className="text-[#2dcd84]" />
             </div>
 
             {user && showPopup && (

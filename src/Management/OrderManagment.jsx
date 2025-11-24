@@ -71,7 +71,7 @@ export default function AdminOrders() {
             <tr className="bg-gray-100">
               <th className="p-2 border">Product</th>
               <th className="p-2 border">Customer</th>
-              <th className="p-2 border">Email</th>
+              <th className="p-2 border">UID</th>
               <th className="p-2 border">Quantity</th>
               <th className="p-2 border">Total Price</th>
               <th className="p-2 border">Status</th>
@@ -83,7 +83,7 @@ export default function AdminOrders() {
               <tr key={order.id} className="text-center">
                 <td className="p-2 border">{order.productTitle}</td>
                 <td className="p-2 border">{order.name}</td>
-                <td className="p-2 border">{order.email}</td>
+                <td className="p-2 border">{order.address}</td>
                 <td className="p-2 border">{order.quantity}</td>
                 <td className="p-2 border">{order.totalPrice} BDT</td>
                 <td className="p-2 border">{order.status}</td>

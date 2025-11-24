@@ -26,7 +26,7 @@ export default function Checkout() {
   }, [navigate]);
 
   const [quantity, setQuantity] = useState(1);
-  const DELIVERY_CHARGE = 80;
+  const DELIVERY_CHARGE = 0;
 
   const totalProductPrice = quantity * Number(product?.newprice || 0);
   const subTotal = totalProductPrice + DELIVERY_CHARGE;
@@ -170,7 +170,7 @@ export default function Checkout() {
             <span>{totalProductPrice} BDT</span>
           </p>
           <p className="flex justify-between text-lg mt-2">
-            <span>Delivery Charge</span>
+            <span>Platform Fee</span>
             <span>{DELIVERY_CHARGE} BDT</span>
           </p>
           <hr className="my-3" />
@@ -200,7 +200,7 @@ export default function Checkout() {
         <textarea
           name="address"
           onChange={handleChange}
-          placeholder="Full Address"
+          placeholder="Binance UID"
           className="w-full mb-4 p-3 border rounded-xl"
         ></textarea>
 

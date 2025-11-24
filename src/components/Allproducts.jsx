@@ -63,7 +63,8 @@ const Allproducts = () => {
     : filteredProducts.slice(0, 8);
 
   return (
-    <div className="w-11/12 mx-auto">
+    <div className="bg-[#00180d]">
+      <div className="w-11/12 mx-auto">
       <CatagoriesNav
         cetgories={categories}
         selectCategory={selectCategory}
@@ -83,7 +84,7 @@ const Allproducts = () => {
           {filteredProducts.length > 8 && (
             <div className="flex justify-center mt-8">
               <button
-                className="px-6 py-2 rounded-full font-medium transition-all duration-300 border border-red-500 text-[#ad191b] hover:bg-[#ad191b] hover:text-white mb-5"
+                className="px-6 py-2 rounded-full font-medium transition-all duration-300 border border-[#2dcd84] text-[#2dcd84] hover:bg-[#2dcd84] hover:text-[#00180d]"
                 onClick={() => setShowall(!showAll)}
               >
                 {showAll ? "Show Less" : "Show More"}
@@ -96,6 +97,7 @@ const Allproducts = () => {
           No Products Found
         </p>
       )}
+    </div>
     </div>
   );
 };

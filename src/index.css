@@ -13,8 +13,8 @@ html, body, #root{
 }
 
 .swiper-pagination-bullet{
-    background-color: rgb(214, 94, 94) !important;
+    background-color: rgb(6, 150, 30) !important;
 }
 .swiper-pagination-bullet-active{
-    background-color: rgba(rgb(255, 0, 0));
+    background-color: rgba(rgb(22, 160, 10));
 }
