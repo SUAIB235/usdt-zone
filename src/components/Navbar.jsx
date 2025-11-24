@@ -107,24 +107,24 @@ export default function Navbar() {
 
             {user && showPopup && (
               <div className="absolute right-0 top-12 border border-[#2dcd84] bg-[#00180d] rounded-box  shadow-lg rounded-xl p-3 w-52 text-center z-50">
-                <p className="text-sm break-all">{user.email}</p>
+                <p className="text-sm text-[#2dcd84] break-all">{user.email}</p>
                 {isAdmin && (
                   <button
                     onClick={() => navigate("/admin")}
-                    className="mt-3 w-full bg-[#ff8f9c] text-white py-1.5 rounded-xl hover:bg-black transition"
+                    className="mt-3 w-full bg-[#2dcd84] text-[#00180d] py-1.5 rounded-xl border border-[#2dcd84] hover:text-[#2dcd84] hover:bg-[#00180d] transition"
                   >
                     Admin Panel
                   </button>
                 )}
                 <button
                   onClick={() => navigate("/orders")}
-                  className="mt-3 w-full bg-[#ff8f9c] text-white py-1.5 rounded-xl hover:bg-black transition"
+                  className="mt-3 w-full bg-[#2dcd84] text-[#00180d] py-1.5 rounded-xl border border-[#2dcd84] hover:text-[#2dcd84] hover:bg-[#00180d] transition"
                 >
                   Order History
                 </button>
                 <button
                   onClick={logout}
-                  className="mt-3 w-full bg-[#ff8f9c] text-white py-1.5 rounded-xl hover:bg-black transition"
+                  className="mt-3 w-full bg-[#2dcd84] text-[#00180d] py-1.5 rounded-xl border border-[#2dcd84] hover:text-[#2dcd84] hover:bg-[#00180d] transition"
                 >
                   Logout
                 </button>

@@ -2,12 +2,13 @@ import React from "react";
 
 export default function About() {
   return (
-    <div className="w-11/12 max-w-4xl mx-auto mt-20 font-pop">
-      <h1 className="text-4xl font-bold text-center text-[#ff8f9c] mb-6">
+   <div className="bg-[#00180d] min-h-screen">
+     <div className="w-11/12 max-w-4xl mx-auto py-20 font-pop">
+      <h1 className="text-4xl font-bold text-center text-[#2dcd84] mb-6">
         About Us
       </h1>
 
-      <div className="space-y-6 text-gray-700">
+      <div className="space-y-6 text-white">
         <p className="text-lg leading-7">
           Welcome to <strong>TrendZone</strong>! We are committed to providing
           the best products and services to our valued customers. Our goal is to
@@ -34,28 +35,29 @@ export default function About() {
 
       <div className="mt-10 flex flex-col md:flex-row items-center justify-around gap-6">
         <div className="text-center">
-          <h3 className="text-xl font-bold text-[#ff8f9c] mb-2">Our Mission</h3>
-          <p className="text-gray-600">
+          <h3 className="text-xl font-bold text-[#2dcd84] mb-2">Our Mission</h3>
+          <p className="text-white">
             To provide top-quality products and ensure customer satisfaction in
             every purchase.
           </p>
         </div>
 
         <div className="text-center">
-          <h3 className="text-xl font-bold text-[#ff8f9c] mb-2">Our Vision</h3>
-          <p className="text-gray-600">
+          <h3 className="text-xl font-bold text-[#2dcd84] mb-2">Our Vision</h3>
+          <p className="text-white">
             To become a trusted online shopping destination for customers
             worldwide.
           </p>
         </div>
 
         <div className="text-center">
-          <h3 className="text-xl font-bold text-[#ff8f9c] mb-2">Our Values</h3>
-          <p className="text-gray-600">
+          <h3 className="text-xl font-bold text-[#2dcd84] mb-2">Our Values</h3>
+          <p className="text-white">
             Quality, transparency, trust, and customer happiness.
           </p>
         </div>
       </div>
     </div>
+   </div>
   );
 }

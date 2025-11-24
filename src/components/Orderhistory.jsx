@@ -45,40 +45,40 @@ export default function OrderHistory() {
 
   return (
     <div className="w-11/12 mx-auto mt-5 max-w-3xl font-pop">
-      <h2 className="text-3xl font-bold text-center mb-6 text-[#ff8f9c]">
+      <h2 className="text-3xl font-bold text-center mb-6 text-[#2dcd84]">
         Your Orders
       </h2>
 
       {orders.length === 0 ? (
-        <p className="text-4xl font-bold text-center text-[#ff8f9c] mt-10">No orders yet.</p>
+        <p className="text-4xl font-bold text-center text-[#2dcd84] mt-10">No orders yet.</p>
       ) : (
         <div className="space-y-4">
           {orders.map((order) => (
             <div
               key={order.id}
-              className="border p-4 rounded-xl shadow-sm bg-white"
+              className="border border-[#2dcd84] p-4 rounded-xl shadow-sm bg-[#00180d]"
             >
-              <p className="font-semibold text-lg">{order.productTitle}</p>
+              <p className="font-semibold text-[#2dcd84] text-lg">{order.productTitle}</p>
 
-              <div className="flex justify-between mt-2">
+              <div className="flex text-[#2dcd84] justify-between mt-2">
                 <span>Quantity:</span>
                 <span>{order.quantity}</span>
               </div>
 
-              <div className="flex justify-between">
+              <div className="flex text-[#2dcd84] justify-between">
                 <span>Total Price:</span>
                 <span>{order.totalPrice} BDT</span>
               </div>
 
-              <div className="flex justify-between">
+              <div className="flex text-[#2dcd84] justify-between">
                 <span>Status:</span>
-                <span className="font-semibold text-[#ff8f9c]">
+                <span className="font-semibold text-red-500">
                   {order.status}
                 </span>
               </div>
 
               {order.date && (
-                <p className="text-sm text-gray-500 mt-2">
+                <p className="text-sm text-white mt-2">
                   {new Date(order.date.seconds * 1000).toLocaleString()}
                 </p>
               )}

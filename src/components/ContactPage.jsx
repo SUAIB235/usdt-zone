@@ -41,13 +41,14 @@ export default function Contact() {
   };
 
   return (
-    <div className="w-11/12 max-w-2xl mx-auto mt-20 font-pop">
+    <div className="bg-[#00180d] min-h-screen">
+      <div className="w-11/12 max-w-2xl mx-auto py-20 font-pop">
       <Toaster position="top-right" />
-      <h1 className="text-4xl font-bold text-center text-[#ff8f9c] mb-6">
+      <h1 className="text-4xl font-bold text-center text-[#2dcd84] mb-6">
         Contact Us
       </h1>
 
-      <p className="text-center text-gray-700 mb-6">
+      <p className="text-center text-white mb-6">
         Have a question or suggestion? Send us a message and we will get back to
         you as soon as possible.
       </p>
@@ -58,7 +59,7 @@ export default function Contact() {
           value={form.name}
           onChange={handleChange}
           placeholder="Your Name"
-          className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-[#202020]"
+          className="w-full p-3 border text-[#2dcd84] border-[#2dcd84] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#202020]"
           required
         />
 
@@ -68,7 +69,7 @@ export default function Contact() {
           onChange={handleChange}
           placeholder="Your Email"
           type="email"
-          className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-[#202020]"
+          className="w-full p-3 border text-[#2dcd84] border-[#2dcd84] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#202020]"
           required
         />
 
@@ -78,24 +79,25 @@ export default function Contact() {
           onChange={handleChange}
           placeholder="Your Message"
           rows={5}
-          className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-[#202020]"
+          className="w-full p-3 border text-[#2dcd84] border-[#2dcd84] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#202020]"
           required
         ></textarea>
 
         <button
           type="submit"
           disabled={loading}
-          className="bg-black text-white text-lg px-4 py-3 w-full rounded-lg shadow hover:bg-[#ff8f9c] transition"
+          className="bg-[#2dcd84] text-[#00180d] border text-lg px-4 py-3 w-full rounded-lg shadow hover:bg-[#00180d] hover:text-[#2dcd84] transition"
         >
           {loading ? "Sending..." : "Send Message"}
         </button>
       </form>
 
-      <div className="mt-10 text-center text-gray-600">
+      <div className="mt-10 text-center text-white">
         <p>Email: support@trendzone.com</p>
         <p>Phone: +8801940686844</p>
         <p>Address: Sherpur Sadar, Dhaka, Bangladesh</p>
       </div>
+    </div>
     </div>
   );
 }
