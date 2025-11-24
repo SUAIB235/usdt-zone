@@ -5,7 +5,7 @@ import AllCoins from "../components/AllCoins";
 
 const Products = () => {
   return (
-    <div className="min-h-screen bg-[#00180d]">
+    <div className="min-h-screen bg-[#0A0F0D]">
       <Navbar />
 
       <div className="py-20">

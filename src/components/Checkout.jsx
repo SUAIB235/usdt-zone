@@ -114,7 +114,7 @@ export default function Checkout() {
 
   return (
     <div className="bg-[#0A0F0D] min-h-screen text-[#E5FFF5]">
-      <div className="w-11/12 mx-auto max-w-xl font-pop">
+      <div className="w-11/12 mx-auto max-w-xl font-pop pb-10">
         <Toaster position="top-right" />
 
         <h2 className="text-3xl font-bold text-center py-10 text-[#00C389]">

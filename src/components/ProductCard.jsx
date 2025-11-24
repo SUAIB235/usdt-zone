@@ -8,9 +8,13 @@ import toast from "react-hot-toast";
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
+
   return (
     <div
-      className="font-mon mb-10 mt-5 transition-transform duration-300 hover:scale-105 border border-[#2dcd84] rounded-2xl bg-[#00180d]"
+      className="font-mon mt-20 mb-20 transition-all duration-300 
+      hover:scale-105 hover:border-[#C9A44C]
+      border border-[#00C389] rounded-2xl 
+      bg-[#111916] shadow-lg cursor-pointer h-60 md:h-70"
       onClick={async () => {
         try {
           const snap = await getDocs(collection(db, "PaymentMethods"));
@@ -24,7 +28,7 @@ const ProductCard = ({ product }) => {
             return;
           }
 
-          const payment = paymentMethods[0]; // choose first payment method
+          const payment = paymentMethods[0];
 
           navigate("/checkout", {
             state: { product, payment },
@@ -35,21 +39,28 @@ const ProductCard = ({ product }) => {
         }
       }}
     >
+      {/* Product Image */}
       <img
         src={product.product_picture}
         alt={product.title}
-        className=" mx-auto object-cover rounded-lg"
+        className="h-[120px] w-[120px] lg:h-[65%] mx-auto lg:w-[65%] object-cover rounded-lg"
       />
-      <div className="flex p-2">
-        <div>
-          <h3 className="text-[#2dcd84] font-mon">{product.title}</h3>
-          <div className="flex text-[#f6a355]">
-            <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaRegStarHalfStroke />
-          </div>
-          <div className="flex gap-2 mb-3 text-[#2dcd84]">
-            <p className="line-through">{product.oldprice}</p>{" "}
-            <strong>{product.newprice}</strong> BDT
-          </div>
+
+      {/* Product Details */}
+      <div className="p-3">
+        <h3 className="text-[#00C389] font-semibold text-md mb-1">
+          {product.title}
+        </h3>
+
+        {/* Stars */}
+        <div className="flex text-[#C9A44C] mb-1">
+          <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaRegStarHalfStroke />
+        </div>
+
+        {/* Price */}
+        <div className="flex gap-2 text-[#00C389]">
+          <p className="line-through opacity-70 mb-2">{product.oldprice}</p>
+          <strong>{product.newprice}</strong> BDT
         </div>
       </div>
     </div>

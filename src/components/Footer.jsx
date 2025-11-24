@@ -8,40 +8,41 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="bg-[#00180d] text-white font-pop border-t border-gray-700">
+    <footer className="bg-[#0A0F0D] text-[#E5FFF5] font-pop border-t border-[#00C389] py-10">
       <div className="w-11/12 max-w-6xl mx-auto py-10 grid grid-cols-1 md:grid-cols-3 gap-10">
+
         {/* About Section */}
         <div>
-          <h2 className="text-2xl font-bold text-[#2dcd84] mb-3">USDTZONE</h2>
-          <p className="text-gray-300 text-sm">
-            Your one-trusted e-shop for the usdt and others crypto. Best services at your fingertips.
+          <h2 className="text-2xl font-bold text-[#00C389] mb-3">USDTZONE</h2>
+          <p className="text-[#C9A44C] text-sm">
+            Your trusted e-shop for USDT and crypto services. Fast, secure and always reliable.
           </p>
         </div>
 
         {/* Quick Links */}
         <div>
-          <h3 className="text-xl font-semibold mb-3">Quick Links</h3>
-          <ul className="space-y-2 text-gray-300">
+          <h3 className="text-xl font-semibold text-[#00C389] mb-3">Quick Links</h3>
+          <ul className="space-y-2 text-[#E5FFF5]">
             <li
-              className="hover:text-[#2dcd84] cursor-pointer"
+              className="hover:text-[#C9A44C] cursor-pointer transition"
               onClick={() => (window.location.href = "/")}
             >
               Home
             </li>
             <li
-              className="hover:text-[#2dcd84] cursor-pointer"
+              className="hover:text-[#C9A44C] cursor-pointer transition"
               onClick={() => (window.location.href = "/products")}
             >
               Products
             </li>
             <li
-              className="hover:text-[#2dcd84] cursor-pointer"
+              className="hover:text-[#C9A44C] cursor-pointer transition"
               onClick={() => (window.location.href = "/about")}
             >
               About
             </li>
             <li
-              className="hover:text-[#2dcd84] cursor-pointer"
+              className="hover:text-[#C9A44C] cursor-pointer transition"
               onClick={() => (window.location.href = "/contact")}
             >
               Contact
@@ -51,33 +52,32 @@ export default function Footer() {
 
         {/* Contact & Social */}
         <div>
-          <h3 className="text-xl font-semibold mb-3">Contact Us</h3>
-          <p className="text-gray-300 text-sm mb-3">
-            Email: support@usdtzone.store
-          </p>
-          <p className="text-gray-300 text-sm mb-3">Phone: +8801940686844</p>
+          <h3 className="text-xl font-semibold text-[#00C389] mb-3">Contact Us</h3>
+          <p className="text-[#C9A44C] text-sm mb-3">Email: support@usdtzone.store</p>
+          <p className="text-[#C9A44C] text-sm mb-3">Phone: +8801940686844</p>
+
           <div className="flex gap-3 mt-3">
             <a
               href="#"
-              className="bg-[#2dcd84] hover:bg-white hover:text-[#ff8f9c] transition p-2 rounded-full"
+              className="bg-[#00C389] hover:bg-[#C9A44C] transition p-2 rounded-full text-[#0A0F0D]"
             >
               <FaFacebookF />
             </a>
             <a
               href="#"
-              className="bg-[#2dcd84] hover:bg-white hover:text-[#ff8f9c] transition p-2 rounded-full"
+              className="bg-[#00C389] hover:bg-[#C9A44C] transition p-2 rounded-full text-[#0A0F0D]"
             >
               <FaTwitter />
             </a>
             <a
               href="#"
-              className="bg-[#2dcd84] hover:bg-white hover:text-[#ff8f9c] transition p-2 rounded-full"
+              className="bg-[#00C389] hover:bg-[#C9A44C] transition p-2 rounded-full text-[#0A0F0D]"
             >
               <FaInstagram />
             </a>
             <a
               href="#"
-              className="bg-[#2dcd84] hover:bg-white hover:text-[#ff8f9c] transition p-2 rounded-full"
+              className="bg-[#00C389] hover:bg-[#C9A44C] transition p-2 rounded-full text-[#0A0F0D]"
             >
               <FaLinkedinIn />
             </a>
@@ -86,7 +86,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-700 mt-10 py-4 text-center text-gray-500 text-sm">
+      <div className="border-t border-[#00C389] py-4 text-center text-[#C9A44C] text-sm">
         &copy; {new Date().getFullYear()} USDTZONE. All rights reserved.
       </div>
     </footer>

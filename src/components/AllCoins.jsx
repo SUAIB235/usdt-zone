@@ -17,7 +17,7 @@ const Allproducts = () => {
   const queryParams = new URLSearchParams(location.search);
   const searchQuery = queryParams.get("search") || "";
 
-  // Fetch products from Firestore
+  // Fetch products
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -34,20 +34,17 @@ const Allproducts = () => {
         setLoading(false);
       }
     };
-
     fetchProducts();
   }, []);
 
-  // Filter products by category and search query
+  // Filter by category and search
   useEffect(() => {
     let filtered = products;
 
-    // Filter by category
     if (selectCategory !== "All") {
       filtered = filtered.filter((p) => p.category === selectCategory);
     }
 
-    // Filter by search query
     if (searchQuery) {
       filtered = filtered.filter((p) =>
         p.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -58,46 +55,53 @@ const Allproducts = () => {
   }, [products, selectCategory, searchQuery]);
 
   const categories = ["All", ...new Set(products.map((m) => m.category))];
-  const visibleProducts = showAll
-    ? filteredProducts
-    : filteredProducts.slice(0, 8);
+  const visibleProducts = showAll ? filteredProducts : filteredProducts.slice(0, 8);
 
   return (
-    <div className="bg-[#00180d]">
+    <div className="bg-[#0A0F0D]">
       <div className="w-11/12 mx-auto">
-      <CatagoriesNav
-        cetgories={categories}
-        selectCategory={selectCategory}
-        setSelectCategory={setSelectCategory}
-      />
-      {loading ? (
-        <div className="flex justify-center items-center h-64">
-          <span className="loading loading-dots loading-5xl text-[#2dcd84]"></span>
-        </div>
-      ) : filteredProducts.length > 0 ? (
-        <>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {visibleProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+        
+        {/* Categories */}
+        <CatagoriesNav
+          cetgories={categories}
+          selectCategory={selectCategory}
+          setSelectCategory={setSelectCategory}
+        />
+
+        {/* Loading */}
+        {loading ? (
+          <div className="flex justify-center items-center h-64">
+            <span className="loading loading-dots loading-lg text-[#00C389]"></span>
           </div>
-          {filteredProducts.length > 8 && (
-            <div className="flex justify-center mt-8">
-              <button
-                className="px-6 py-2 rounded-full font-medium transition-all duration-300 border border-[#2dcd84] text-[#2dcd84] hover:bg-[#2dcd84] hover:text-[#00180d]"
-                onClick={() => setShowall(!showAll)}
-              >
-                {showAll ? "Show Less" : "Show More"}
-              </button>
+        ) : filteredProducts.length > 0 ? (
+          <>
+            {/* Products Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {visibleProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
             </div>
-          )}
-        </>
-      ) : (
-        <p className="text-4xl font-bold text-center text-[#ff8f9c] font-pop">
-          No Products Found
-        </p>
-      )}
-    </div>
+
+            {/* Show More Button */}
+            {filteredProducts.length > 8 && (
+              <div className="flex justify-center mt-8">
+                <button
+                  className="px-6 py-2 rounded-full font-medium transition-all duration-300 
+                    border border-[#00C389] text-[#00C389] 
+                    hover:bg-[#C9A44C] hover:border-[#C9A44C] hover:text-[#0A0F0D]"
+                  onClick={() => setShowall(!showAll)}
+                >
+                  {showAll ? "Show Less" : "Show More"}
+                </button>
+              </div>
+            )}
+          </>
+        ) : (
+          <p className="text-3xl font-bold text-center text-[#C9A44C] font-pop">
+            No Products Found
+          </p>
+        )}
+      </div>
     </div>
   );
 };

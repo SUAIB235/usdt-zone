@@ -35,77 +35,89 @@ export default function LatestProducts() {
   }, []);
 
   return (
-    <div className="bg-[#00180d]">
-      <div className=" max-full mx-auto w-11/12 mb-full">
-      <h2 className="text-2xl font-pop font-bold mt-full mb-5 text-center text-[#2dcd84]">
-        Latest Products
-      </h2>
+    <div className="bg-[#0A0F0D] border-t border-[#00C389] py-10">
+      <div className="max-full mx-auto w-11/12">
 
-      <Swiper
-        modules={[Autoplay, Pagination]}
-        slidesPerView={1}
-        spaceBetween={20}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
-        breakpoints={{
-          640: { slidesPerView: 3 },
-          1024: { slidesPerView: 6 },
-        }}
-        className="rounded-xl"
-      >
-        {products.map((product) => (
-          <SwiperSlide key={product.id}>
-            <div
-              className="h-50 md:h-65 font-mon transition-transform mb-15 mt-10 duration-300 hover:scale-105 border border-[#2dcd84] rounded-2xl bg-[#00180d]"
-              onClick={async () => {
-                try {
-                  const snap = await getDocs(collection(db, "PaymentMethods"));
-                  const paymentMethods = snap.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data(),
-                  }));
+        {/* Title */}
+        <h2 className="text-2xl font-pop font-bold mb-6 text-center text-[#00C389]">
+          Latest Products
+        </h2>
 
-                  if (paymentMethods.length === 0) {
-                    toast.error("No payment method found!");
-                    return;
+        <Swiper
+          modules={[Autoplay, Pagination]}
+          slidesPerView={1}
+          spaceBetween={20}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          breakpoints={{
+            640: { slidesPerView: 3 },
+            1024: { slidesPerView: 6 },
+          }}
+          className="rounded-xl"
+        >
+          {products.map((product) => (
+            <SwiperSlide key={product.id}>
+              <div
+                className="h-50 md:h-85 font-mon transition-transform duration-300 hover:scale-105 hover:shadow-xl shadow-black/40
+                mb-8 mt-10 border border-[#00C389] rounded-2xl bg-[#111916] cursor-pointer ml-2 mr-2"
+                onClick={async () => {
+                  try {
+                    const snap = await getDocs(collection(db, "PaymentMethods"));
+                    const paymentMethods = snap.docs.map((doc) => ({
+                      id: doc.id,
+                      ...doc.data(),
+                    }));
+
+                    if (paymentMethods.length === 0) {
+                      toast.error("No payment method found!");
+                      return;
+                    }
+
+                    const payment = paymentMethods[0];
+
+                    navigate("/checkout", {
+                      state: { product, payment },
+                    });
+                  } catch (error) {
+                    console.log(error);
+                    toast.error("Failed to load payment method!");
                   }
+                }}
+              >
+                {/* Product Image */}
+                <img
+                  src={product.product_picture}
+                  alt={product.title}
+                  className="h-[120px] w-[120px] lg:h-[70%] mx-auto lg:w-[70%] object-cover rounded-lg "
+                />
 
-                  const payment = paymentMethods[0]; // use first payment method
+                {/* Product Details */}
+                <div className="flex p-3">
+                  <div>
+                    <h3 className="text-[#00C389] font-pop text-sm md:text-base">
+                      {product.title}
+                    </h3>
 
-                  navigate("/checkout", {
-                    state: {
-                      product,
-                      payment,
-                    },
-                  });
-                } catch (error) {
-                  console.log(error);
-                  toast.error("Failed to load payment method!");
-                }
-              }}
-            >
-              <img
-                src={product.product_picture}
-                alt={product.title}
-                className="h-[120px] w-[120px] lg:h-[70%] mx-auto lg:w-[70%] object-cover rounded-lg"
-              />
-              <div className="flex p-2">
-                <div>
-                  <h3 className="text-[#2dcd84] fonr-mon">{product.title}</h3>
-                  <div className="flex text-[#f6a355]">
-                    <FaStar /> <FaStar /> <FaStar /> <FaStar />{" "}
-                    <FaRegStarHalfStroke />
-                  </div>
-                  <div className="flex gap-2 mb-full text-[#2dcd84]">
-                    <p className="line-through">{product.oldprice}</p>{" "}
-                    <strong>{product.newprice}</strong> BDT
+                    {/* Rating */}
+                    <div className="flex text-[#C9A44C] mt-1">
+                      <FaStar /> <FaStar /> <FaStar /> <FaStar />{" "}
+                      <FaRegStarHalfStroke />
+                    </div>
+
+                    {/* Prices */}
+                    <div className="flex gap-2 mb-3 text-[#E5FFF5]">
+                      <p className="line-through">{product.oldprice}</p>
+                      <strong className="text-[#C9A44C]">
+                        {product.newprice}
+                      </strong>{" "}
+                      BDT
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   );
 }

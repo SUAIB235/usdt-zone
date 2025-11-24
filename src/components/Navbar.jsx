@@ -15,27 +15,25 @@ export default function Navbar() {
 
   const link = (
     <>
-      <li className="text-[#2dcd84]" onClick={() => navigate("/")}>Home</li>
-      <li className="text-[#2dcd84]" onClick={() => navigate("/coins")}>Coins</li>
-      <li className="text-[#2dcd84]" onClick={() => navigate("/orders")}>Orders</li>
-      <li className="text-[#2dcd84]" onClick={() => navigate("/about")}>About</li>
-      <li className="text-[#2dcd84]" onClick={() => navigate("/contact")}>Contact</li>
+      <li className="text-[#2dcd84] hover:text-white transition" onClick={() => navigate("/")}>Home</li>
+      <li className="text-[#2dcd84] hover:text-white transition" onClick={() => navigate("/coins")}>Coins</li>
+      <li className="text-[#2dcd84] hover:text-white transition" onClick={() => navigate("/orders")}>Orders</li>
+      <li className="text-[#2dcd84] hover:text-white transition" onClick={() => navigate("/about")}>About</li>
+      <li className="text-[#2dcd84] hover:text-white transition" onClick={() => navigate("/contact")}>Contact</li>
     </>
   );
 
   const [searchTerm, setSearchTerm] = useState("");
 
-  // ✅ Only one handleSearch function
   const handleSearch = (e) => {
-    e.preventDefault(); // prevent page reload
+    e.preventDefault();
     if (!searchTerm) return;
-    navigate(`/products?search=${searchTerm}`);
+    navigate(`/coins?search=${searchTerm}`);
   };
 
-  // Keep user logged in
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user); // null if not logged in
+      setUser(user);
       setIsAdmin(user?.email === adminEmail);
     });
     return unsubscribe;
@@ -57,74 +55,90 @@ export default function Navbar() {
   };
 
   return (
-    <div className="navbar shadow-md #faf6f1 backdrop-blur-md text-[#202020] fixed top-0 left-0 right-0 z-100 font-mon">
-      <div className="w-11/12 mx-auto flex justify-between items-center">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <CiMenuBurger className="text-[#2dcd84] text-2xl" />
+    <div className="navbar bg-[#00180d] border-b border-[#2dcd84]/20 backdrop-blur-md fixed top-0 left-0 right-0 z-50 font-mon">
+      <div className="w-11/12 mx-auto flex justify-between items-center py-3">
+
+        {/* Left Side */}
+        <div className="navbar-start flex items-center gap-6">
+
+          {/* Mobile Menu */}
+          <div className="dropdown lg:hidden">
+            <div tabIndex={0} role="button" className="btn btn-ghost p-0">
+              <CiMenuBurger className="text-[#2dcd84] text-3xl" />
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content border border-[#2dcd84] bg-[#00180d] rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content border border-[#2dcd84] bg-[#00180d] rounded-xl z-20 mt-3 w-56 p-3 shadow-lg"
             >
               {link}
             </ul>
           </div>
-          <div className="flex items-center gap-10">
-            <a className="lg:text-4xl sm:text-2xl font-mon font-bold text-[#2dcd84] transition" onClick={() => navigate("/")}>
-              USDTZONE
-            </a>
-            <div className="navbar-center hidden lg:flex">
-              <ul className="flex gap-6">{link}</ul>
-            </div>
+
+          {/* Logo */}
+          <a
+            onClick={() => navigate("/")}
+            className="font-mon font-bold text-[#2dcd84] text-2xl sm:text-3xl lg:text-4xl cursor-pointer tracking-wide"
+          >
+            USDTZONE
+          </a>
+
+          {/* Desktop Menu */}
+          <div className="navbar-center hidden lg:flex">
+            <ul className="flex gap-6">{link}</ul>
           </div>
         </div>
 
-        {/* Search Form */}
-        <div className="navbar-end flex gap-2 md:gap-6 lg:gap-6">
+        {/* Right Side */}
+        <div className="navbar-end flex items-center gap-3 md:gap-6">
+
+          {/* Search */}
           <form
             onSubmit={handleSearch}
-            className="flex items-center gap-2 rounded-full px-3 py-2 border border-[#2dcd84]"
+            className="flex items-center gap-2 rounded-full px-3 py-2 border border-[#2dcd84] bg-transparent"
           >
-           <IoMdSearch className="text-[#2dcd84] text-2xl" />
+            <IoMdSearch className="text-[#2dcd84] text-xl md:text-2xl" />
             <input
               type="search"
               placeholder="Search"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="bg-transparent outline-none text-sm text-[#2dcd84] placeholder-[#2dcd84] w-15 md:w-40 sm:flex"
+              className="bg-transparent outline-none text-sm text-[#2dcd84] placeholder-[#2dcd84] w-20 md:w-40"
             />
           </form>
 
-          <div className="relative flex-none">
+          {/* Profile Icon */}
+          <div className="relative">
             <div
-              className="text-2xl md:text-3xl lg:text-3xl cursor-pointer"
+              className="cursor-pointer"
               onClick={handleIconClick}
             >
-              <IoPersonOutline className="text-[#2dcd84]" />
+              <IoPersonOutline className="text-[#2dcd84] text-3xl" />
             </div>
 
+            {/* Popup */}
             {user && showPopup && (
-              <div className="absolute right-0 top-12 border border-[#2dcd84] bg-[#00180d] rounded-box  shadow-lg rounded-xl p-3 w-52 text-center z-50">
+              <div className="absolute right-0 top-12 border border-[#2dcd84] bg-[#00180d] rounded-xl shadow-lg p-3 w-56 text-center z-50">
                 <p className="text-sm text-[#2dcd84] break-all">{user.email}</p>
+
                 {isAdmin && (
                   <button
                     onClick={() => navigate("/admin")}
-                    className="mt-3 w-full bg-[#2dcd84] text-[#00180d] py-1.5 rounded-xl border border-[#2dcd84] hover:text-[#2dcd84] hover:bg-[#00180d] transition"
+                    className="mt-3 w-full bg-[#2dcd84] text-[#00180d] py-1.5 rounded-xl border border-[#2dcd84] hover:bg-transparent hover:text-[#2dcd84] transition"
                   >
                     Admin Panel
                   </button>
                 )}
+
                 <button
                   onClick={() => navigate("/orders")}
-                  className="mt-3 w-full bg-[#2dcd84] text-[#00180d] py-1.5 rounded-xl border border-[#2dcd84] hover:text-[#2dcd84] hover:bg-[#00180d] transition"
+                  className="mt-3 w-full bg-[#2dcd84] text-[#00180d] py-1.5 rounded-xl border border-[#2dcd84] hover:bg-transparent hover:text-[#2dcd84] transition"
                 >
                   Order History
                 </button>
+
                 <button
                   onClick={logout}
-                  className="mt-3 w-full bg-[#2dcd84] text-[#00180d] py-1.5 rounded-xl border border-[#2dcd84] hover:text-[#2dcd84] hover:bg-[#00180d] transition"
+                  className="mt-3 w-full bg-[#2dcd84] text-[#00180d] py-1.5 rounded-xl border border-[#2dcd84] hover:bg-transparent hover:text-[#2dcd84] transition"
                 >
                   Logout
                 </button>
@@ -132,6 +146,7 @@ export default function Navbar() {
             )}
           </div>
         </div>
+
       </div>
     </div>
   );
