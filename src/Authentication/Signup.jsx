@@ -58,7 +58,7 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white font-pop">
+    <div className="min-h-screen flex items-center justify-center bg-[#00180d] font-pop">
       <Toaster position="top-right" />
       <div className="w-11/12 max-w-sm bg-white p-8 rounded-2xl border border-gray-200 shadow">
         <h2 className="text-2xl font-semibold text-center mb-6">Sign Up</h2>

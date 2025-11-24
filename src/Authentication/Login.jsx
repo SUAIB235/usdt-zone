@@ -28,31 +28,31 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white font-pop">
+    <div className="min-h-screen flex items-center justify-center bg-[#00180d] font-pop">
       <Toaster position="top-right"></Toaster>
-      <div className="w-11/12 max-w-sm bg-white p-8 rounded-2xl border border-gray-200 shadow">
-        <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
+      <div className="w-11/12 max-w-sm bg-[#00180d] p-8 rounded-2xl border border-[#2dcd84] shadow">
+        <h2 className="text-2xl text-[#2dcd84] font-semibold text-center mb-6">Login</h2>
 
         <input
           type="email"
           placeholder="Email"
-          className="w-full mb-4 p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-[#202020]"
+          className="w-full mb-4 text-[#2dcd84] p-3 border border-[#2dcd84] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#202020]"
           onChange={(e) => setEmail(e.target.value)}
         />
 
         <input
           type="password"
           placeholder="Password"
-          className="w-full mb-2 p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-[#202020]"
+          className="w-full text-[#2dcd84] mb-2 p-3 border border-[#2dcd84] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#202020]"
           onChange={(e) => setPassword(e.target.value)}
         />
         <div className="text-sm mb-5" onClick={() => navigate("/signup")}>
-          <p className="text-gray-600">Don’t have an account yet?</p>
-          <p className="text-red-500">Register instead</p>
+          <p className="text-[#2dcd84]">Don’t have an account yet?</p>
+          <p className="text-white">Register instead</p>
         </div>
         <button
           onClick={handleLogin}
-          className="w-full bg-[#ff8f9c] text-white py-3 rounded-xl hover:bg-[#000000] transition"
+          className="w-full bg-[#2dcd84] text-white py-3 rounded-xl hover:bg-[#000000] transition"
         >
           Login
         </button>

@@ -4,6 +4,7 @@ import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { IoMdSearch } from "react-icons/io";
+import { CiMenuBurger } from "react-icons/ci";
 
 export default function Navbar() {
   const [user, setUser] = useState(null);
@@ -61,30 +62,17 @@ export default function Navbar() {
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
+              <CiMenuBurger className="text-[#2dcd84] text-2xl" />
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-white rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content border border-[#2dcd84] bg-[#00180d] rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               {link}
             </ul>
           </div>
           <div className="flex items-center gap-10">
-            <a className="lg:text-4xl sm:text-2xl font-mon font-bold text-[#2dcd84] hover:text-[#000000] transition">
+            <a className="lg:text-4xl sm:text-2xl font-mon font-bold text-[#2dcd84] hover:text-[#00180d] transition">
               USDTZONE
             </a>
             <div className="navbar-center hidden lg:flex">
