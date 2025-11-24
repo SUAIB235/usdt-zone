@@ -64,7 +64,7 @@ export default function Navbar() {
           {/* Mobile Menu */}
           <div className="dropdown lg:hidden">
             <div tabIndex={0} role="button" className="btn btn-ghost p-0">
-              <CiMenuBurger className="text-[#2dcd84] text-3xl" />
+              <CiMenuBurger className="text-[#2dcd84] text-xl" />
             </div>
             <ul
               tabIndex="-1"
@@ -77,7 +77,7 @@ export default function Navbar() {
           {/* Logo */}
           <a
             onClick={() => navigate("/")}
-            className="font-mon font-bold text-[#2dcd84] text-2xl sm:text-3xl lg:text-4xl cursor-pointer tracking-wide"
+            className="font-mon font-bold text-[#2dcd84] text-xl md:text-2xl lg:text-4xl cursor-pointer"
           >
             USDTZONE
           </a>
@@ -96,13 +96,13 @@ export default function Navbar() {
             onSubmit={handleSearch}
             className="flex items-center gap-2 rounded-full px-3 py-2 border border-[#2dcd84] bg-transparent"
           >
-            <IoMdSearch className="text-[#2dcd84] text-xl md:text-2xl" />
+            <IoMdSearch className="text-[#2dcd84] text-2xl md:text-2xl" />
             <input
               type="search"
               placeholder="Search"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="bg-transparent outline-none text-sm text-[#2dcd84] placeholder-[#2dcd84] w-20 md:w-40"
+              className="bg-transparent outline-none text-sm text-[#2dcd84] placeholder-[#2dcd84] w-15 md:w-40"
             />
           </form>
 
@@ -112,7 +112,7 @@ export default function Navbar() {
               className="cursor-pointer"
               onClick={handleIconClick}
             >
-              <IoPersonOutline className="text-[#2dcd84] text-3xl" />
+              <IoPersonOutline className="text-[#2dcd84] text-2xl" />
             </div>
 
             {/* Popup */}

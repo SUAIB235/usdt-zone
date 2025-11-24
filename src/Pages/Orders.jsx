@@ -4,7 +4,7 @@ import OrderHistory from "../components/Orderhistory";
 
 const Orders = () => {
   return (
-    <div className="min-h-screen bg-[#00180d]">
+    <div className="min-h-screen bg-[#0A0F0D]">
       <Navbar></Navbar>
       <div className="py-20">
         <OrderHistory></OrderHistory>

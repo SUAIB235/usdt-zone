@@ -23,7 +23,7 @@ export default function Carousel() {
   }, []);
 
   return (
-    <div className="w-full border-[#2dcd84] border-b border-gray-700 bg-[#00180d]">
+    <div className="w-full border-b border-[#2dcd84] bg-[#0A0F0D] mt-10">
       <Swiper
         modules={[Pagination, Autoplay]}
         pagination={{ clickable: true }}
