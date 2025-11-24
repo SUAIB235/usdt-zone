@@ -12,10 +12,9 @@ export default function Footer() {
       <div className="w-11/12 max-w-6xl mx-auto py-10 grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* About Section */}
         <div>
-          <h2 className="text-2xl font-bold text-[#ff8f9c] mb-3">TRENDZONE</h2>
+          <h2 className="text-2xl font-bold text-[#ff8f9c] mb-3">USDTZONE</h2>
           <p className="text-gray-300 text-sm">
-            Your one-stop shop for the latest products and trends. Quality and
-            style at your fingertips.
+            Your one-trusted e-shop for the usdt and others crypto. Best services at your fingertips.
           </p>
         </div>
 
@@ -54,7 +53,7 @@ export default function Footer() {
         <div>
           <h3 className="text-xl font-semibold mb-3">Contact Us</h3>
           <p className="text-gray-300 text-sm mb-3">
-            Email: support@trendzone.com
+            Email: support@usdtzone.store
           </p>
           <p className="text-gray-300 text-sm mb-3">Phone: +8801940686844</p>
           <div className="flex gap-3 mt-3">
@@ -88,7 +87,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-gray-700 mt-10 py-4 text-center text-gray-500 text-sm">
-        &copy; {new Date().getFullYear()} TRENDZONE. All rights reserved.
+        &copy; {new Date().getFullYear()} USDTZONE. All rights reserved.
       </div>
     </footer>
   );

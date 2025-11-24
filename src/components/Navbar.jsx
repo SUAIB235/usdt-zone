@@ -84,7 +84,7 @@ export default function Navbar() {
           </div>
           <div className="flex items-center gap-10">
             <a className="lg:text-4xl sm:text-2xl font-mon font-bold text-[#ff8f9c] hover:text-[#000000] transition">
-              TRENDZONE
+              USDTZONE
             </a>
             <div className="navbar-center hidden lg:flex">
               <ul className="flex gap-6">{link}</ul>
