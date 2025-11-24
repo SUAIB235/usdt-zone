@@ -72,7 +72,7 @@ const Allproducts = () => {
       />
       {loading ? (
         <div className="flex justify-center items-center h-64">
-          <span className="loading loading-dots loading-5xl text-[#ad191b]"></span>
+          <span className="loading loading-dots loading-5xl text-[#2dcd84]"></span>
         </div>
       ) : filteredProducts.length > 0 ? (
         <>

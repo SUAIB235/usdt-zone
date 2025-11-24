@@ -60,34 +60,34 @@ export default function Signup() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#00180d] font-pop">
       <Toaster position="top-right" />
-      <div className="w-11/12 max-w-sm bg-white p-8 rounded-2xl border border-gray-200 shadow">
-        <h2 className="text-2xl font-semibold text-center mb-6">Sign Up</h2>
+      <div className="w-11/12 max-w-sm bg-[#00180d] p-8 rounded-2xl border border-[#2dcd84] shadow">
+        <h2 className="text-2xl text-[#2dcd84] font-semibold text-center mb-6">Sign Up</h2>
 
         <input
           type="text"
           placeholder="Name"
-          className="w-full mb-4 p-3 border border-gray-300 rounded-xl focus:outline-none"
+          className="w-full mb-4 p-3 border text-[#2dcd84] border-[#2dcd84] rounded-xl focus:outline-none"
           onChange={(e) => setName(e.target.value)}
         />
 
         <input
           type="email"
           placeholder="Email"
-          className="w-full mb-5 p-3 border border-gray-300 rounded-xl focus:outline-none"
+          className="w-full mb-5 p-3 border text-[#2dcd84] border-[#2dcd84] rounded-xl focus:outline-none"
           onChange={(e) => setEmail(e.target.value)}
         />
 
         <input
           type="password"
           placeholder="Password"
-          className="w-full mb-5 p-3 border border-gray-300 rounded-xl focus:outline-none"
+          className="w-full mb-5 p-3 border text-[#2dcd84] border-[#2dcd84] rounded-xl focus:outline-none"
           onChange={(e) => setPassword(e.target.value)}
         />
 
         <input
           type="password"
           placeholder="Confirm Password"
-          className="w-full mb-2 p-3 border border-gray-300 rounded-xl focus:outline-none"
+          className="w-full mb-2 p-3 border text-[#2dcd84] border-[#2dcd84] rounded-xl focus:outline-none"
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
 
@@ -95,13 +95,13 @@ export default function Signup() {
           className="text-sm mb-5 cursor-pointer"
           onClick={() => navigate("/login")}
         >
-          <p className="text-gray-600">Already have an account?</p>
-          <p className="text-red-500">Login instead</p>
+          <p className="text-[#2dcd84]">Already have an account?</p>
+          <p className="text-white">Login instead</p>
         </div>
 
         <button
           onClick={handleSignup}
-          className="w-full bg-[#ff8f9c] text-white py-3 rounded-xl hover:bg-[#000000] transition"
+          className="w-full bg-[#2dcd84] text-[#00180d] py-3 rounded-xl hover:text-[#2dcd84] hover:bg-[#000000] transition"
         >
           Sign Up
         </button>
