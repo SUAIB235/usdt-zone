@@ -16,7 +16,7 @@ export default function Navbar() {
   const link = (
     <>
       <li className="text-[#2dcd84]" onClick={() => navigate("/")}>Home</li>
-      <li className="text-[#2dcd84]" onClick={() => navigate("/products")}>Product</li>
+      <li className="text-[#2dcd84]" onClick={() => navigate("/coins")}>Coins</li>
       <li className="text-[#2dcd84]" onClick={() => navigate("/orders")}>Orders</li>
       <li className="text-[#2dcd84]" onClick={() => navigate("/about")}>About</li>
       <li className="text-[#2dcd84]" onClick={() => navigate("/contact")}>Contact</li>
@@ -72,7 +72,7 @@ export default function Navbar() {
             </ul>
           </div>
           <div className="flex items-center gap-10">
-            <a className="lg:text-4xl sm:text-2xl font-mon font-bold text-[#2dcd84] hover:text-[#00180d] transition">
+            <a className="lg:text-4xl sm:text-2xl font-mon font-bold text-[#2dcd84] transition" onClick={() => navigate("/")}>
               USDTZONE
             </a>
             <div className="navbar-center hidden lg:flex">

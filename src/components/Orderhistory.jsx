@@ -72,7 +72,7 @@ export default function OrderHistory() {
 
               <div className="flex text-[#2dcd84] justify-between">
                 <span>Status:</span>
-                <span className="font-semibold text-red-500">
+                <span className="font-semibold text-yellow-300">
                   {order.status}
                 </span>
               </div>

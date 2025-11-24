@@ -83,7 +83,7 @@ export default function AdminOrders() {
               <tr key={order.id} className="text-center">
                 <td className="p-2 border">{order.productTitle}</td>
                 <td className="p-2 border">{order.name}</td>
-                <td className="p-2 border">{order.address}</td>
+                <td className="p-2 border">{order.uid}</td>
                 <td className="p-2 border">{order.quantity}</td>
                 <td className="p-2 border">{order.totalPrice} BDT</td>
                 <td className="p-2 border">{order.status}</td>

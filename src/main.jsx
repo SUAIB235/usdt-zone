@@ -6,7 +6,7 @@ import Login from "./Authentication/Login";
 import Signup from "./Authentication/Signup";
 import Admin from "./Management/Admin";
 import Checkout from "./components/Checkout";
-import Products from "./Pages/Products";
+import Coins from "./Pages/Coins";
 import Orders from "./Pages/Orders";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
@@ -40,8 +40,8 @@ const router = createBrowserRouter([
     element: <Orders></Orders>,
   },
   {
-    path: "/products",
-    element: <Products></Products>,
+    path: "/coins",
+    element: <Coins></Coins>,
   },
   {
     path: "/about",

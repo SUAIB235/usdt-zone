@@ -1,5 +1,5 @@
 import ImageCarousel from "../components/ImageCarousel";
-import Allproducts from "../components/Allproducts";
+import Allproducts from "../components/AllCoins";
 import { Toaster } from "react-hot-toast";
 import LatestProducts from "../components/LatestProducts";
 

@@ -37,17 +37,15 @@ export default function Checkout() {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    address: "",
-    trxId: "",
+    uid: "",
+    clientno: "",
   });
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // ------------------------------
-  // Fetch ALL payment methods
-  // ------------------------------
+  // PAYMENT METHODS
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [selectedPayment, setSelectedPayment] = useState(null);
 
@@ -56,19 +54,16 @@ export default function Checkout() {
       const snap = await getDocs(collection(db, "PaymentMethods"));
       const list = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
       setPaymentMethods(list);
-      if (list.length > 0) setSelectedPayment(list[0]); // Auto-select first
+      if (list.length > 0) setSelectedPayment(list[0]);
     };
 
     fetchPayments();
   }, []);
 
-  // ------------------------------
-  // ORDER HANDLER
-  // ------------------------------
   const [loading, setLoading] = useState(false);
 
   const handleOrder = async () => {
-    if (!form.name || !form.email || !form.address || !form.trxId)
+    if (!form.name || !form.email || !form.uid || !form.clientno)
       return toast.error("Please fill all fields");
 
     if (!selectedPayment) return toast.error("Please select a payment method");
@@ -85,12 +80,10 @@ export default function Checkout() {
         totalPrice: subTotal,
         name: form.name,
         email: form.email,
-        address: form.address,
-        trxId: form.trxId,
-
+        uid: form.uid,
+        clientno: form.clientno,
         payment_type: selectedPayment.payment_type,
         payment_no: selectedPayment.payment_no,
-
         status: "pending",
         date: serverTimestamp(),
       });
@@ -113,154 +106,163 @@ export default function Checkout() {
 
   if (!product) {
     return (
-      <h2 className="text-4xl font-bold text-center text-[#ff8f9c] mt-10">
+      <h2 className="text-4xl font-bold text-center text-[#00C389] mt-10">
         No product selected
       </h2>
     );
   }
 
   return (
-    <div className="w-11/12 mx-auto mt-6 max-w-xl font-pop">
-      <Toaster position="top-right" />
+    <div className="bg-[#0A0F0D] min-h-screen text-[#E5FFF5]">
+      <div className="w-11/12 mx-auto max-w-xl font-pop">
+        <Toaster position="top-right" />
 
-      <h2 className="text-3xl font-bold text-center mb-6 text-[#ff8f9c]">
-        Checkout
-      </h2>
+        <h2 className="text-3xl font-bold text-center py-10 text-[#00C389]">
+          Checkout
+        </h2>
 
-      {/* PRODUCT SECTION */}
-      <div className="w-full mb-4 p-3 border border-gray-300 rounded-xl">
-        <img
-          src={product.product_picture}
-          alt={product.title}
-          className="w-40 mx-auto rounded-lg"
-        />
+        {/* PRODUCT */}
+        <div className="mb-4 p-4 border border-[#00C389] rounded-xl bg-[#111916] shadow-lg shadow-black/30">
+          <img
+            src={product.product_picture}
+            alt={product.title}
+            className="w-40 mx-auto rounded-lg"
+          />
 
-        <h3 className="text-xl text-center mt-3 font-semibold">
-          {product.title}
-        </h3>
+          <h3 className="text-xl text-center text-[#00C389] mt-3 font-semibold">
+            {product.title}
+          </h3>
 
-        <p className="text-center text-lg font-bold text-black">
-          {product.newprice} BDT
-        </p>
-
-        {/* DESCRIPTION */}
-        <div className="mt-4">
-          <p className="text-left text-lg font-semibold text-black">
-            Description
+          <p className="text-center text-[#C9A44C] text-lg font-bold">
+            {product.newprice} BDT
           </p>
 
-          <p className="text-left text-sm text-gray-700 mt-1 leading-relaxed">
-            {product.product_description}
-          </p>
-        </div>
-
-        <div className="w-25 flex items-center justify-center gap-4 mt-4 border border-gray-300">
-          <button onClick={decreaseQty} className="px-2 text-xl">
-            -
-          </button>
-          <span className="text-2xl">{quantity}</span>
-          <button onClick={increaseQty} className="px-2 text-xl">
-            +
-          </button>
-        </div>
-
-        <div className="mt-5 w-full mb-4 p-3 border border-gray-300 rounded-xl">
-          <p className="flex justify-between text-lg">
-            <span>Product Total</span>
-            <span>{totalProductPrice} BDT</span>
-          </p>
-          <p className="flex justify-between text-lg mt-2">
-            <span>Platform Fee</span>
-            <span>{DELIVERY_CHARGE} BDT</span>
-          </p>
-          <hr className="my-3" />
-          <p className="flex justify-between text-xl font-bold text-black">
-            <span>Subtotal</span>
-            <span>{subTotal} BDT</span>
-          </p>
-        </div>
-      </div>
-
-      <div className="mt-6 space-y-4">
-        {/* USER INFO */}
-        <input
-          name="name"
-          onChange={handleChange}
-          placeholder="Your Name"
-          className="w-full mb-4 p-3 border rounded-xl"
-        />
-
-        <input
-          name="email"
-          onChange={handleChange}
-          placeholder="Your Email"
-          className="w-full mb-4 p-3 border rounded-xl"
-        />
-
-        <textarea
-          name="address"
-          onChange={handleChange}
-          placeholder="Binance UID"
-          className="w-full mb-4 p-3 border rounded-xl"
-        ></textarea>
-
-        {/* PAYMENT METHODS */}
-        <div className="w-full mb-4 p-3 border border-gray-300 rounded-xl">
-          <h3 className="text-lg font-bold mb-2">Select Payment Method</h3>
-
-          {paymentMethods.length === 0 ? (
-            <p className="text-sm text-red-500">No payment methods found!</p>
-          ) : (
-            paymentMethods.map((pm) => (
-              <label
-                key={pm.id}
-                className={`flex items-center gap-3 p-3 mb-2 border rounded-xl cursor-pointer transition 
-               ${
-                 selectedPayment?.id === pm.id
-                   ? "border-[#ff8f9c] bg-pink-50"
-                   : "bg-white"
-               }`}
-              >
-                <input
-                  type="radio"
-                  checked={selectedPayment?.id === pm.id}
-                  onChange={() => setSelectedPayment(pm)}
-                />
-                <div className="flex items-center gap-3">
-                  <IoCashOutline className="text-xl mb-1" />
-                  <div>
-                    <p className="font-semibold">{pm.payment_type}</p>
-                    <p className="text-sm text-gray-600">{pm.payment_no}</p>
-                  </div>
-                </div>
-              </label>
-            ))
-          )}
-
-          {selectedPayment && (
-            <p className="text-sm mt-2">
-              Send payment to <strong>{selectedPayment.payment_no} </strong>
-              and enter the transaction ID below.
+          <div className="mt-4">
+            <p className="text-lg font-semibold text-[#00C389]">Description</p>
+            <p className="text-sm mt-1 leading-relaxed text-[#E5FFF5]">
+              {product.product_description}
             </p>
-          )}
+          </div>
+
+          {/* Quantity */}
+          <div className="flex items-center justify-center gap-4 mt-5 border border-[#00C389] text-[#00C389] rounded-lg py-2 bg-[#0A0F0D]">
+            <button onClick={decreaseQty} className="px-3 text-xl">
+              -
+            </button>
+            <span className="text-2xl text-[#C9A44C]">{quantity}</span>
+            <button onClick={increaseQty} className="px-3 text-xl">
+              +
+            </button>
+          </div>
+
+          {/* Price Summary */}
+          <div className="mt-5 p-4 border border-[#00C389] rounded-xl bg-[#0D1512]">
+            <p className="flex justify-between text-lg">
+              <span>Product Total</span>
+              <span>{totalProductPrice} BDT</span>
+            </p>
+
+            <p className="flex justify-between text-lg mt-2">
+              <span>Platform Fee</span>
+              <span>{DELIVERY_CHARGE} BDT</span>
+            </p>
+
+            <hr className="my-3 border-[#17382d]" />
+
+            <p className="flex justify-between text-xl font-bold text-[#C9A44C]">
+              <span>Subtotal</span>
+              <span>{subTotal} BDT</span>
+            </p>
+          </div>
         </div>
 
-        {/* TRX ID */}
-        <input
-          name="trxId"
-          onChange={handleChange}
-          placeholder="Transaction ID"
-          className="w-full mb-4 p-3 border rounded-xl"
-        />
+        {/* FORM */}
+        <div className="space-y-4">
+          <input
+            name="name"
+            onChange={handleChange}
+            placeholder="Your Name"
+            className="w-full p-3 border border-[#00C389] rounded-xl bg-[#111916] text-[#E5FFF5]"
+          />
 
-        {/* CONFIRM BUTTON */}
-        <button
-          onClick={handleOrder}
-          disabled={loading}
-          className="bg-black text-white text-lg px-4 py-3 w-full rounded-lg shadow mb-5 hover:bg-[#ff8f9c] transition"
-        >
-          {loading ? "Confirming..." : "Confirm Order"}
-        </button>
+          <input
+            name="email"
+            onChange={handleChange}
+            placeholder="Your Email"
+            className="w-full p-3 border border-[#00C389] rounded-xl bg-[#111916] text-[#E5FFF5]"
+          />
+
+          <textarea
+            name="uid"
+            onChange={handleChange}
+            placeholder="Binance UID"
+            className="w-full p-3 border border-[#00C389] rounded-xl bg-[#111916] text-[#E5FFF5]"
+          ></textarea>
+
+          {/* PAYMENT METHODS */}
+          <div className="p-4 border border-[#00C389] rounded-xl bg-[#111916]">
+            <h3 className="text-lg font-bold mb-3 text-[#00C389]">
+              Select Payment Method
+            </h3>
+
+            {paymentMethods.length === 0 ? (
+              <p className="text-sm">No payment methods found!</p>
+            ) : (
+              paymentMethods.map((pm) => (
+                <label
+                  key={pm.id}
+                  className={`flex items-center gap-3 p-3 mb-2 border rounded-xl cursor-pointer transition-all 
+                  ${
+                    selectedPayment?.id === pm.id
+                      ? "border-[#C9A44C] bg-[#0D1512]"
+                      : "border-[#1e2b25] bg-[#111916]"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    checked={selectedPayment?.id === pm.id}
+                    onChange={() => setSelectedPayment(pm)}
+                  />
+                  <div className="flex items-center gap-3">
+                    <IoCashOutline className="text-xl text-[#C9A44C]" />
+                    <div>
+                      <p className="font-semibold text-[#E5FFF5]">
+                        {pm.payment_type}
+                      </p>
+                      <p className="text-sm text-[#C9A44C]">{pm.payment_no}</p>
+                    </div>
+                  </div>
+                </label>
+              ))
+            )}
+
+            {selectedPayment && (
+              <p className="text-sm mt-2 text-[#E5FFF5]">
+                Send payment to{" "}
+                <strong className="text-[#C9A44C]">
+                  {selectedPayment.payment_no}
+                </strong>{" "}
+                and enter your number below.
+              </p>
+            )}
+          </div>
+
+          <input
+            name="clientno"
+            onChange={handleChange}
+            placeholder="Enter Your Number"
+            className="w-full p-3 border border-[#00C389] rounded-xl bg-[#111916] text-[#E5FFF5]"
+          />
+
+          {/* BUTTON */}
+          <button
+            onClick={handleOrder}
+            disabled={loading}
+            className="bg-[#00C389] text-[#0A0F0D] text-lg px-4 py-3 w-full rounded-lg shadow-lg hover:bg-[#C9A44C] transition font-semibold"
+          >
+            {loading ? "Confirming..." : "Confirm Order"}
+          </button>
+        </div>
       </div>
     </div>
   );

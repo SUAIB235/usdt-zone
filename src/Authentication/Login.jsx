@@ -12,7 +12,7 @@ export default function Login() {
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      toast.success("Login successfully!");
+      toast.success("Login successful!");
       navigate("/");
     } catch (err) {
       if (err.code === "auth/user-not-found") {
@@ -28,31 +28,44 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#00180d] font-pop">
-      <Toaster position="top-right"></Toaster>
-      <div className="w-11/12 max-w-sm bg-[#00180d] p-8 rounded-2xl border border-[#2dcd84] shadow">
-        <h2 className="text-2xl text-[#2dcd84] font-semibold text-center mb-6">Login</h2>
+    <div className="min-h-screen flex items-center justify-center bg-[#0A0F0D] font-pop">
+      <Toaster position="top-right" />
 
+      <div className="w-11/12 max-w-sm bg-[#111916] p-8 rounded-2xl border border-[#00C389] shadow-xl shadow-black/40">
+        <h2 className="text-3xl text-[#00C389] font-bold text-center mb-8">
+          Login
+        </h2>
+
+        {/* EMAIL INPUT */}
         <input
           type="email"
-          placeholder="Email"
-          className="w-full mb-4 text-[#2dcd84] p-3 border border-[#2dcd84] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#202020]"
+          placeholder="Email Address"
+          className="w-full mb-5 p-3 rounded-xl bg-[#0D1512] text-[#E5FFF5] border border-[#00C389] focus:outline-none focus:ring-2 focus:ring-[#00C389]"
           onChange={(e) => setEmail(e.target.value)}
         />
 
+        {/* PASSWORD INPUT */}
         <input
           type="password"
           placeholder="Password"
-          className="w-full text-[#2dcd84] mb-2 p-3 border border-[#2dcd84] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#202020]"
+          className="w-full mb-5 p-3 rounded-xl bg-[#0D1512] text-[#E5FFF5] border border-[#00C389] focus:outline-none focus:ring-2 focus:ring-[#00C389]"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <div className="text-sm mb-5" onClick={() => navigate("/signup")}>
-          <p className="text-[#2dcd84]">Don’t have an account yet?</p>
-          <p className="text-white">Register instead</p>
+
+        {/* SIGNUP LINK */}
+        <div
+          className="text-sm mb-6 text-center cursor-pointer"
+          onClick={() => navigate("/signup")}
+        >
+          <p className="text-[#E5FFF5]">Don't have an account?</p>
+          <p className="text-[#C9A44C] font-semibold">Register now</p>
         </div>
+
+        {/* LOGIN BUTTON */}
         <button
           onClick={handleLogin}
-          className="w-full bg-[#2dcd84] text-[#00180d] py-3 rounded-xl border hover:text-[#2dcd84] hover:bg-[#00180d]  transition"
+          className="w-full bg-[#00C389] text-[#0A0F0D] py-3 rounded-xl text-lg font-semibold
+          hover:bg-[#C9A44C] hover:text-[#0A0F0D] transition shadow-md"
         >
           Login
         </button>

@@ -1,7 +1,7 @@
 import React from "react";
 
 import Navbar from "../components/Navbar";
-import Allproducts from "../components/Allproducts";
+import AllCoins from "../components/AllCoins";
 
 const Products = () => {
   return (
@@ -9,7 +9,7 @@ const Products = () => {
       <Navbar />
 
       <div className="py-20">
-        <Allproducts />
+        <AllCoins />
       </div>
     </div>
   );
