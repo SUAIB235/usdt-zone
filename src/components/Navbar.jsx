@@ -106,7 +106,7 @@ export default function Navbar() {
             </div>
 
             {user && showPopup && (
-              <div className="absolute right-0 top-12 bg-white shadow-lg rounded-xl p-3 w-52 text-center z-50">
+              <div className="absolute right-0 top-12 border border-[#2dcd84] bg-[#00180d] rounded-box  shadow-lg rounded-xl p-3 w-52 text-center z-50">
                 <p className="text-sm break-all">{user.email}</p>
                 {isAdmin && (
                   <button
