@@ -31,7 +31,7 @@ export default function Footer() {
             </li>
             <li
               className="hover:text-[#C9A44C] cursor-pointer transition"
-              onClick={() => (window.location.href = "/products")}
+              onClick={() => (window.location.href = "/coins")}
             >
               Products
             </li>
