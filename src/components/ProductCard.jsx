@@ -11,7 +11,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <div
-      className="font-mon mt-20 mb-20 transition-all duration-300 
+      className="font-mon mt-5 transition-all duration-300 
       hover:scale-105 hover:border-[#C9A44C]
       border border-[#00C389] rounded-2xl 
       bg-[#111916] shadow-lg cursor-pointer h-60 md:h-70"
@@ -58,9 +58,9 @@ const ProductCard = ({ product }) => {
         </div>
 
         {/* Price */}
-        <div className="flex gap-2 text-[#00C389]">
+        <div className="flex gap-2 text-[#E5FFF5]">
           <p className="line-through opacity-70 mb-2">{product.oldprice}</p>
-          <strong>{product.newprice}</strong> BDT
+          <strong className="text-[#C9A44C]">{product.newprice}</strong> BDT
         </div>
       </div>
     </div>

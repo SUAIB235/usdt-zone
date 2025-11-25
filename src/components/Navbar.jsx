@@ -59,7 +59,8 @@ export default function Navbar() {
       <div className="w-11/12 mx-auto flex justify-between items-center py-3">
 
         {/* Left Side */}
-        <div className="navbar-start flex items-center gap-6">
+       <div className="navbar-start flex items-center gap-6">
+         <div className="flex items-center gap-1">
 
           {/* Mobile Menu */}
           <div className="dropdown lg:hidden">
@@ -81,12 +82,12 @@ export default function Navbar() {
           >
             USDTZONE
           </a>
-
-          {/* Desktop Menu */}
+        </div>
+         {/* Desktop Menu */}
           <div className="navbar-center hidden lg:flex">
             <ul className="flex gap-6">{link}</ul>
           </div>
-        </div>
+       </div>
 
         {/* Right Side */}
         <div className="navbar-end flex items-center gap-3 md:gap-6">

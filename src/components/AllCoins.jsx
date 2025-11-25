@@ -86,7 +86,7 @@ const Allproducts = () => {
             {filteredProducts.length > 8 && (
               <div className="flex justify-center mt-8">
                 <button
-                  className="px-6 py-2 rounded-full font-medium transition-all duration-300 
+                  className="px-6 py-2 mb-5 rounded-full font-medium transition-all duration-300 
                     border border-[#00C389] text-[#00C389] 
                     hover:bg-[#C9A44C] hover:border-[#C9A44C] hover:text-[#0A0F0D]"
                   onClick={() => setShowall(!showAll)}
@@ -98,7 +98,7 @@ const Allproducts = () => {
           </>
         ) : (
           <p className="text-3xl font-bold text-center text-[#C9A44C] font-pop">
-            No Products Found
+            No Coins Found
           </p>
         )}
       </div>
