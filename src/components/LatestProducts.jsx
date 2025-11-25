@@ -93,7 +93,7 @@ export default function LatestProducts() {
                 {/* Product Details */}
                 <div className="flex p-3">
                   <div>
-                    <h3 className="text-[#00C389] font-pop text-sm md:text-base">
+                    <h3 className="text-[#00C389] font-pop font-semibold text-sm md:text-base">
                       {product.title}
                     </h3>
 

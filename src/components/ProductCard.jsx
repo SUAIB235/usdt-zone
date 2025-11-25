@@ -48,7 +48,7 @@ const ProductCard = ({ product }) => {
 
       {/* Product Details */}
       <div className="p-3">
-        <h3 className="text-[#00C389] font-semibold text-md mb-1">
+        <h3 className="text-[#00C389] font-semibold font-pop text-md mb-1">
           {product.title}
         </h3>
 
@@ -59,7 +59,7 @@ const ProductCard = ({ product }) => {
 
         {/* Price */}
         <div className="flex gap-2 text-[#E5FFF5]">
-          <p className="line-through opacity-70 mb-2">{product.oldprice}</p>
+          <p className="line-through mb-2">{product.oldprice}</p>
           <strong className="text-[#C9A44C]">৳{product.newprice}</strong>
         </div>
       </div>
