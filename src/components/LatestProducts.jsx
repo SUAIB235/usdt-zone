@@ -107,9 +107,8 @@ export default function LatestProducts() {
                     <div className="flex gap-2 mb-3 text-[#E5FFF5]">
                       <p className="line-through">{product.oldprice}</p>
                       <strong className="text-[#C9A44C]">
-                        {product.newprice}
-                      </strong>{" "}
-                      BDT
+                        ৳{product.newprice}
+                      </strong>
                     </div>
                   </div>
                 </div>
