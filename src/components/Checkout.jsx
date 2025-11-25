@@ -167,6 +167,11 @@ export default function Checkout() {
               <span>{DELIVERY_CHARGE} BDT</span>
             </p>
 
+            <p className="flex justify-between text-lg mt-2">
+              <span>Delivery In</span>
+              <span>5-30 Minutes</span>
+            </p>
+
             <hr className="my-3 border-[#17382d]" />
 
             <p className="flex justify-between text-xl font-bold text-[#C9A44C]">
