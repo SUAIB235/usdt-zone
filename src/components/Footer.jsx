@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import React from "react";
 import {
   FaFacebookF,
@@ -5,6 +6,8 @@ import {
   FaInstagram,
   FaLinkedinIn,
 } from "react-icons/fa";
+
+const navigate = useNavigate();
 
 export default function Footer() {
   return (
@@ -31,19 +34,19 @@ export default function Footer() {
             </li>
             <li
               className="hover:text-[#C9A44C] cursor-pointer transition"
-              onClick={() => (window.location.href = "/coins")}
+              onClick={() => navigate("/coins")}
             >
               Products
             </li>
             <li
               className="hover:text-[#C9A44C] cursor-pointer transition"
-              onClick={() => (window.location.href = "/about")}
+              onClick={() => navigate("/about")}
             >
               About
             </li>
             <li
               className="hover:text-[#C9A44C] cursor-pointer transition"
-              onClick={() => (window.location.href = "/contact")}
+              onClick={() => navigate("/contact")}
             >
               Contact
             </li>
