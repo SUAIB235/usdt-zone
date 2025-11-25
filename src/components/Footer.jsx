@@ -7,9 +7,8 @@ import {
   FaLinkedinIn,
 } from "react-icons/fa";
 
-const navigate = useNavigate();
-
 export default function Footer() {
+  const navigate = useNavigate();
   return (
     <footer className="bg-[#0A0F0D] text-[#E5FFF5] font-pop border-t border-[#00C389] py-10">
       <div className="w-11/12 max-w-6xl mx-auto py-10 grid grid-cols-1 md:grid-cols-3 gap-10">
