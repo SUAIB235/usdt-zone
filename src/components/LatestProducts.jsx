@@ -39,7 +39,7 @@ export default function LatestProducts() {
       <div className="max-full mx-auto w-11/12">
 
         {/* Title */}
-        <h2 className="text-2xl font-pop font-bold mb-6 text-center text-[#00C389]">
+        <h2 className="text-2xl font-pop font-bold mb-2 text-center text-[#00C389]">
           Latest Coins
         </h2>
 
@@ -58,7 +58,7 @@ export default function LatestProducts() {
             <SwiperSlide key={product.id}>
               <div
                 className="h-50 md:h-85 font-mon transition-transform duration-300 hover:scale-105 hover:shadow-xl shadow-black/40
-                mb-5 mt-5 border border-[#00C389] rounded-2xl bg-[#111916] cursor-pointer ml-2 mr-2"
+                mb-2 mt-2 border border-[#00C389] rounded-2xl bg-[#111916] cursor-pointer ml-2 mr-2"
                 onClick={async () => {
                   try {
                     const snap = await getDocs(collection(db, "PaymentMethods"));
