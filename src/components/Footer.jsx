@@ -11,7 +11,7 @@ export default function Footer() {
   const navigate = useNavigate();
   return (
     <footer className="bg-[#0A0F0D] text-[#E5FFF5] font-pop border-t border-[#2dcd84]/20 py-10">
-      <div className="w-11/12 max-w-6xl mx-auto py-10 grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div className="w-11/12 max-w-6xl mx-auto py-5 grid grid-cols-1 md:grid-cols-3 gap-10">
 
         {/* About Section */}
         <div>
