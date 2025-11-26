@@ -2,7 +2,7 @@ import React from "react";
 
 const CatagoriesNav = ({ cetgories, selectCategory, setSelectCategory }) => {
   return (
-    <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 md:gap-5 py-6 sm:py-8 md:py-10 border-[#00C389] border-b">
+    <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 md:gap-5 py-6 sm:py-8 md:py-10">
       {cetgories.map((cat) => (
         <button
           key={cat}
