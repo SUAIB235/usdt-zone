@@ -35,7 +35,7 @@ export default function LatestProducts() {
   }, []);
 
   return (
-    <div className="bg-[#0A0F0D] border-t border-[#2dcd84]/20 py-10">
+    <div className="bg-[#0A0F0D] border-t border-[#2dcd84]/20 py-3">
       <div className="max-full mx-auto w-11/12">
 
         {/* Title */}
